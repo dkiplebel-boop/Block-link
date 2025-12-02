@@ -3,51 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Block Link</title>
+    <title>Block Link - Stranger Things Theme</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Tone.js for sound generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script> 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+        /* Import all necessary fonts: Orbitron (default), Monoton (Splash), Playfair Display (Upside Down Theme) */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Monoton&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
         
-        /* --- Default Theme Variables (Dark Mode) --- */
+        /* --- Default Dark Base Theme Variables --- */
         :root {
             --bg-primary: #1e1e2d;
             --bg-secondary: #0a0a1a;
             --ui-background: #282a36;
             --ui-panel: #383a59;
             --color-main: #fff;
-            --color-accent: #bd93f9;
-            --color-link: #ff79c6;
-            --color-success: #50fa7b;
-            --color-warning: #F8E71C;
             --color-canvas-bg: #282a36;
             --color-grid-line: #383a59;
+            --color-button-menu-bg: #4b5563; 
+            --color-button-menu-shadow: #1f2937; 
+            --color-control-icon: #f3f4f6; 
+        }
+
+        /* --- Default Light Base Theme Variables (Override) --- */
+        .mode-light { 
+            --bg-primary: #f0f0f5; 
+            --bg-secondary: #e0e0e5; 
+            --ui-background: #ffffff; 
+            --ui-panel: #f0f0f0; 
+            --color-main: #333; 
+            --color-canvas-bg: #f8f8f8; 
+            --color-grid-line: #ccc; 
+            --color-button-menu-bg: #9ca3af; 
+            --color-button-menu-shadow: #6b7280; 
+            --color-control-icon: #1f2937; 
+        }
+
+        /* --- Color Palette Definitions --- */
+        
+        /* 1. Default (Dark Mode/Neon) */
+        .theme-default {
+            --color-accent: #bd93f9; 
+            --color-link: #ff79c6; 
+            --color-success: #50fa7b;
+            --color-warning: #F8E71C;
             --color-button-primary: #bd93f9;
             --color-button-primary-shadow: #8a70b4;
             --color-button-primary-hover: #e6a9f8;
             --color-button-secondary: #ff79c6;
             --color-button-secondary-shadow: #ad437f;
             --color-button-secondary-hover: #ff99cc;
-            --color-button-menu-bg: #4b5563; /* Gray-600 */
-            --color-button-menu-shadow: #1f2937; /* Gray-800 */
+            --block-color-1: #4A90E2; 
+            --block-color-2: #50E3C2; 
+            --block-color-3: #F5A623; 
+            --block-color-4: #D0021B; 
+            --block-color-5: #9013FE; 
+            --block-color-6: #F8E71C; 
+        }
+        
+        /* 2. Forest Palette */
+        .theme-forest { 
+            --color-accent: #7cb448; --color-link: #F5A623; --color-success: #b8cc9a; --color-warning: #EEDD4C; 
+            --color-button-primary: #7cb448; --color-button-primary-shadow: #4a7824; --color-button-primary-hover: #9cd468; 
+            --color-button-secondary: #F5A623; --color-button-secondary-shadow: #b3730e; --color-button-secondary-hover: #ffd378; 
+            --block-color-1: #065f46; --block-color-2: #84cc16; --block-color-3: #92400e; --block-color-4: #ef4444; --block-color-5: #374151; --block-color-6: #fcd34d;
+        }
+        
+        /* 3. Upside Down Palette - ACCURATE STRANGER THINGS COLORS */
+        .theme-upside-down { 
+            --color-accent: #b91c1c; /* Deep Red Title */
+            --color-link: #9ca3af;   /* Spore Grey */
+            --color-success: #7f1d1d; 
+            --color-warning: #ef4444; /* Bright Red */
+            --color-button-primary: #7f1d1d; /* Gore Red */
+            --color-button-primary-shadow: #450a0a; 
+            --color-button-primary-hover: #991b1b; 
+            --color-button-secondary: #1e3a8a; /* Dark Blue */
+            --color-button-secondary-shadow: #172554; 
+            --color-button-secondary-hover: #1e40af; 
+            
+            /* The Blocks: Atmosphere, Gore, Spores, and Darkness */
+            --block-color-1: #881337; /* Deep Blood Red (Vines) */
+            --block-color-2: #1e40af; /* Cold Night Blue (Atmosphere) */
+            --block-color-3: #9ca3af; /* Floating Ash/Spores (Grey) */
+            --block-color-4: #dc2626; /* Bright Demogorgon Red */
+            --block-color-5: #312e81; /* Abyssal Indigo (Shadows) */
+            --block-color-6: #475569; /* Cold Slate (Decay) */
+        }
+        
+        /* 4. Ocean Palette */
+        .theme-ocean { 
+            --color-accent: #00bcd4; --color-link: #ffcd3c; --color-success: #4caf50; --color-warning: #f44336; 
+            --color-button-primary: #00bcd4; --color-button-primary-shadow: #008ba3; --color-button-primary-hover: #33e5ff; 
+            --color-button-secondary: #ffcd3c; --color-button-secondary-shadow: #c79c16; --color-button-secondary-hover: #ffeb8d; 
+            --block-color-1: #0ea5e9; --block-color-2: #67e8f9; --block-color-3: #9333ea; --block-color-4: #fb923c; --block-color-5: #1e40af; --block-color-6: #16a34a;
+        }
+        
+        /* 5. Sunset Palette */
+        .theme-sunset { 
+            --color-accent: #ff8a00; --color-link: #ff3d00; --color-success: #ffeb3b; --color-warning: #e91e63; 
+            --color-button-primary: #ff8a00; --color-button-primary-shadow: #c46900; --color-button-primary-hover: #ffad42; 
+            --color-button-secondary: #ff3d00; --color-button-secondary-shadow: #b32b00; --color-button-secondary-hover: #ff6e33; 
+            --block-color-1: #ff5722; --block-color-2: #ff9800; --block-color-3: #ffc107; --block-color-4: #e91e63; --block-color-5: #673ab7; --block-color-6: #3f51b5;
         }
 
-        /* Theme definitions */
-        .theme-light { --bg-primary: #f0f0f5; --bg-secondary: #e0e0e5; --ui-background: #ffffff; --ui-panel: #f0f0f0; --color-main: #333; --color-accent: #9013FE; --color-link: #D0021B; --color-success: #1E824C; --color-warning: #C70039; --color-canvas-bg: #f8f8f8; --color-grid-line: #ccc; --color-button-primary: #9013FE; --color-button-primary-shadow: #5a0a9e; --color-button-primary-hover: #a948fe; --color-button-secondary: #D0021B; --color-button-secondary-shadow: #9e0214; --color-button-secondary-hover: #ff3349; --color-button-menu-bg: #9ca3af; --color-button-menu-shadow: #6b7280; }
-        .theme-forest { --bg-primary: #1a3424; --bg-secondary: #0a1c12; --ui-background: #2d4a34; --ui-panel: #3a6042; --color-main: #e0f0e0; --color-accent: #7cb448; --color-link: #F5A623; --color-success: #b8cc9a; --color-warning: #EEDD4C; --color-canvas-bg: #2d4a34; --color-grid-line: #1e3a24; --color-button-primary: #7cb448; --color-button-primary-shadow: #4a7824; --color-button-primary-hover: #9cd468; --color-button-secondary: #F5A623; --color-button-secondary-shadow: #b3730e; --color-button-secondary-hover: #ffd378; --color-button-menu-bg: #5a7d61; --color-button-menu-shadow: #3f5e43; }
-        .theme-upside-down { --bg-primary: #120a0a; --bg-secondary: #000000; --ui-background: #1a0f0f; --ui-panel: #2e1d1d; --color-main: #e0e0e0; --color-accent: #e50914; --color-link: #ff4545; --color-success: #ff0000; --color-warning: #ffe000; --color-canvas-bg: #1a0f0f; --color-grid-line: #331f1f; --color-button-primary: #e50914; --color-button-primary-shadow: #96060c; --color-button-primary-hover: #ff333d; --color-button-secondary: #ff4545; --color-button-secondary-shadow: #b22d2d; --color-button-secondary-hover: #ff6666; --color-button-menu-bg: #4d2626; --color-button-menu-shadow: #331a1a; }
-        .theme-ocean { --bg-primary: #3a506b; --bg-secondary: #0e1e30; --ui-background: #6a8ba7; --ui-panel: #839aa8; --color-main: #f0f8ff; --color-accent: #00bcd4; --color-link: #ffcd3c; --color-success: #4caf50; --color-warning: #f44336; --color-canvas-bg: #6a8ba7; --color-grid-line: #4e6c87; --color-button-primary: #00bcd4; --color-button-primary-shadow: #008ba3; --color-button-primary-hover: #33e5ff; --color-button-secondary: #ffcd3c; --color-button-secondary-shadow: #c79c16; --color-button-secondary-hover: #ffeb8d; --color-button-menu-bg: #4682b4; --color-button-menu-shadow: #2c5374; }
-        .toggle-switch { width: 50px; height: 25px; background: #ccc; border-radius: 25px; position: relative; cursor: pointer; transition: background-color 0.3s; }
-        .toggle-switch.active { background: var(--color-success); }
-        .toggle-switch:before { content: ''; position: absolute; width: 21px; height: 21px; border-radius: 50%; background: white; top: 2px; left: 2px; transition: transform 0.3s; }
+        /* 6. Midnight Palette */
+        .theme-midnight { 
+            --color-accent: #4dd0e1; --color-link: #9fa8da; --color-success: #26a69a; --color-warning: #ef5350; 
+            --color-button-primary: #4dd0e1; --color-button-primary-shadow: #008ba3; --color-button-primary-hover: #88ffff; 
+            --color-button-secondary: #9fa8da; --color-button-secondary-shadow: #6f79a8; --color-button-secondary-hover: #cfd8ff; 
+            --block-color-1: #00bcd4; --block-color-2: #3f51b5; --block-color-3: #673ab7; --block-color-4: #03a9f4; --block-color-5: #5e35b1; --block-color-6: #81d4fa;
+        }
+        
+        /* 7. Lava Palette */
+        .theme-lava { 
+            --color-accent: #ff5722; --color-link: #ff9800; --color-success: #cddc39; --color-warning: #f44336; 
+            --color-button-primary: #ff5722; --color-button-primary-shadow: #c43e11; --color-button-primary-hover: #ff8966; 
+            --color-button-secondary: #ff9800; --color-button-secondary-shadow: #c47600; --color-button-secondary-hover: #ffb74d; 
+            --block-color-1: #d84315; --block-color-2: #ff9e00; --block-color-3: #ffc200; --block-color-4: #e53935; --block-color-5: #5d4037; --block-color-6: #424242;
+        }
+        
+        /* 8. Mint Palette */
+        .theme-mint { 
+            --color-accent: #00c853; --color-link: #ff8a80; --color-success: #aeea00; --color-warning: #ffb300; 
+            --color-button-primary: #00c853; --color-button-primary-shadow: #009624; --color-button-primary-hover: #45ff84; 
+            --color-button-secondary: #ff8a80; --color-button-secondary-shadow: #c75b56; --color-button-secondary-hover: #ffbdad; 
+            --block-color-1: #4db6ac; --block-color-2: #80cbc4; --block-color-3: #43a047; --block-color-4: #aed581; --block-color-5: #00bcd4; --block-color-6: #795548;
+        }
+
+        /* 9. Grape Palette */
+        .theme-grape { 
+            --color-accent: #673ab7; --color-link: #e91e63; --color-success: #4caf50; --color-warning: #ffeb3b; 
+            --color-button-primary: #673ab7; --color-button-primary-shadow: #4527a0; --color-button-primary-hover: #9c78f1; 
+            --color-button-secondary: #e91e63; --color-button-secondary-shadow: #b3144e; --color-button-secondary-hover: #ff6699; 
+            --block-color-1: #9c27b0; --block-color-2: #673ab7; --block-color-3: #512da8; --block-color-4: #3f51b5; --block-color-5: #00bcd4; --block-color-6: #009688;
+        }
+        
+        /* --- DYNAMIC THEME CLASSES --- */
+        .accent-title-text {
+            color: var(--color-accent);
+            text-shadow: 0 0 10px var(--color-accent, 0.6);
+            transition: color 0.5s, text-shadow 0.5s;
+        }
+        
+        .accent-highlight-text {
+            color: var(--color-accent);
+            transition: color 0.5s;
+        }
+
+        .accent-warning-text {
+            color: var(--color-link);
+            transition: color 0.5s;
+        }
+        
+        .new-high-score-text {
+            color: var(--color-warning);
+            text-shadow: 0 0 10px var(--color-warning, 0.8);
+            animation: flicker 1s infinite alternate;
+        }
+        
+        @keyframes flicker {
+            from { opacity: 1; }
+            to { opacity: 0.7; }
+        }
+
+        /* Utility Styles */
+        .toggle-switch { width: 50px; height: 25px; background: var(--color-button-menu-shadow); border-radius: 25px; position: relative; cursor: pointer; transition: background-color 0.3s; }
+        .toggle-switch.active { background: var(--color-accent); }
+        .toggle-switch:before { content: ''; position: absolute; width: 21px; height: 21px; border-radius: 50%; background: var(--color-main); top: 2px; left: 2px; transition: transform 0.3s; }
         .toggle-switch.active:before { transform: translateX(25px); }
         .active-theme { font-weight: 900 !important; border: 2px solid var(--color-warning) !important; transform: translateY(-2px) !important; box-shadow: 0 6px var(--color-button-menu-shadow) !important; }
+        
         #comboText { position: absolute; font-size: 2rem; font-weight: bold; color: var(--color-warning); text-shadow: 0 0 10px var(--color-warning); animation: flyup 1.5s ease-out forwards; pointer-events: none; z-index: 50; }
         @keyframes flyup { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-100px) scale(0.5); opacity: 0; } }
 
+        /* General Layout */
         body {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Orbitron', sans-serif; /* Default UI font */
             background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
             color: var(--color-main);
             display: flex;
@@ -68,34 +200,24 @@
             background: var(--ui-background);
             padding: 15px; 
             border-radius: 20px;
-            box-shadow: 0 0 40px rgba(71, 107, 255, 0.4);
+            box-shadow: 0 0 40px var(--color-accent, rgba(71, 107, 255, 0.4)); 
+            min-width: 280px; 
+            transition: background 0.5s, box-shadow 0.5s;
         }
         
         #gameCanvas {
             width: 100%; 
             height: auto; 
             aspect-ratio: 1 / 1; 
-            box-shadow: 0 0 20px rgba(248, 248, 242, 0.2);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
             border-radius: 10px;
             background-color: var(--color-canvas-bg);
             touch-action: none;
             transition: background 0.5s;
-            border: none;
+            border: 4px solid var(--color-grid-line);
         }
 
-        .header h1 {
-            font-size: 2rem; 
-            color: var(--color-accent);
-            text-shadow: 0 0 10px var(--color-accent, 0.6);
-        }
-
-        #gameInfoBar {
-            width: 100%;
-            max-width: 100%; 
-            padding: 10px 0;
-            box-sizing: border-box;
-        }
-        
+        /* Button Styles */
         .btn {
             padding: 10px 15px;
             border-radius: 8px;
@@ -104,6 +226,7 @@
             font-weight: 700;
             box-shadow: 0 4px var(--color-button-primary-shadow);
             transition: all 0.15s ease-out;
+            letter-spacing: 0.05em;
         }
 
         .btn:hover {
@@ -118,45 +241,132 @@
         .btn-menu {
             background-color: var(--color-button-menu-bg);
             box-shadow: 0 4px var(--color-button-menu-shadow);
+            transition: background-color 0.15s ease-out, box-shadow 0.15s ease-out;
         }
         
         .btn-menu:hover {
-            background-color: var(--color-button-menu-bg);
-            filter: brightness(1.2);
+            filter: brightness(1.2); 
         }
         .btn-menu:active {
              transform: translateY(2px);
              box-shadow: 0 2px var(--color-button-menu-shadow);
         }
         
+        /* In-Game Control Button Styling */
+        .btn-control {
+            border: none;
+            background: transparent;
+            color: var(--color-control-icon);
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.2s ease-in-out;
+        }
+        
+        .btn-control:hover {
+            color: var(--color-accent);
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); 
+        }
+        
+        .btn-control:active {
+            transform: scale(0.95);
+            color: var(--color-link);
+        }
+
         .modal-background {
             background-color: var(--ui-panel);
             border: 2px solid var(--color-accent);
+            transition: background-color 0.5s, border-color 0.5s;
+        }
+        
+        .main-menu-bg {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            transition: background 0.5s;
+        }
+        
+        /* --- SPLASH SCREEN STYLES --- */
+        #splashScreen {
+            position: fixed;
+            inset: 0;
+            background-color: var(--bg-secondary); 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: opacity 1s ease-out;
+        }
+        
+        .splash-logo {
+            font-family: 'Monoton', cursive; 
+            font-size: 5rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            color: var(--color-accent);
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.5), 0 0 40px var(--color-accent, #bd93f9);
+            animation: pulse 1.5s ease-in-out infinite alternate;
+        }
+        
+        .splash-tagline {
+            font-size: 1.2rem;
+            color: var(--color-main);
+            opacity: 0.7;
+            margin-top: 10px;
+            letter-spacing: 0.1em;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        @keyframes pulse {
+            from { transform: scale(1); opacity: 0.9; }
+            to { transform: scale(1.05); opacity: 1; }
+        }
+        
+        /* === CUSTOM THEME FONT OVERRIDES === */
+        /* Change the main game title font only for the Upside Down theme */
+        .theme-upside-down #mainMenuContent h2 {
+            font-family: 'Playfair Display', serif; /* Elegant, dramatic */
+            font-style: italic;
+            color: #b91c1c; 
+            text-shadow: 0 0 15px #7f1d1d, 0 0 40px rgba(185, 28, 28, 0.5); 
+            letter-spacing: 0.05em;
         }
 
     </style>
 </head>
-<body class="theme-dark">
+<body class="theme-default mode-dark">
+    
+    <!-- === KC GAMES SPLASH SCREEN === -->
+    <div id="splashScreen">
+        <div class="splash-logo">KC Games</div>
+        <div class="splash-tagline">Presents</div>
+    </div>
+    <!-- END SPLASH SCREEN -->
 
-    <div id="gameContainer" class="game-container">
+    <div id="gameContainer" class="game-container" style="visibility: hidden;">
         <div class="header w-full">
-            <h1>BLOCK LINK</h1>
+            <h1 class="text-center accent-title-text">BLOCK LINK</h1>
         </div>
         
         <div class="game-area w-full flex-col items-center">
             
             <!-- In-Game Info Bar -->
             <div id="gameInfoBar" class="flex justify-between items-center" style="display: none;">
-                <span class="text-xl font-bold">Score: <span id="currentScore">0</span></span>
-                <!-- Gear Icon for Settings (Replaced Home Button) -->
-                <button id="settingsBtn" class="btn btn-menu text-sm py-1 px-3">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings">
-                        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 0-.74 2.8v.9a2 2 0 0 0-.25 1.11L2 12l.14.77a2 2 0 0 0 .25 1.11v.9a2 2 0 0 0 .74 2.8l.43.25a2 2 0 0 1 1 1.73v.18a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 0 .74-2.8v-.9a2 2 0 0 0 .25-1.11L22 12l-.14-.77a2 2 0 0 0-.25-1.11v-.9a2 2 0 0 0-.74-2.8l-.43-.25a2 2 0 0 1-1-1.73v-.18a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>
-                    </svg>
-                </button>
+                <span class="text-xl font-bold accent-highlight-text">Score: <span id="currentScore">0</span></span>
+                
+                <div class="flex items-center space-x-3">
+                    <button id="homeBtn" class="btn-control">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home">
+                            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+                        </svg>
+                    </button>
+                    <button id="settingsBtn" class="btn-control">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings">
+                            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 0-.74 2.8v.9a2 2 0 0 0-.25 1.11L2 12l.14.77a2 2 0 0 0 .25 1.11v.9a2 2 0 0 0 .74 2.8l.43.25a2 2 0 0 1 1 1.73v.18a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 0 .74-2.8v-.9a2 2 0 0 0 .25-1.11L22 12l-.14-.77a2 2 0 0 0-.25-1.11v-.9a2 2 0 0 0-.74-2.8l-.43-.25a2 2 0 0 1-1-1.73v-.18a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
             
-            <!-- Main Canvas -->
             <canvas id="gameCanvas" style="display: none;"></canvas>
             
         </div>
@@ -164,55 +374,61 @@
 
     <!-- Generic Game Modal for Menus and Game Over -->
     <div id="gameModal" class="fixed inset-0 flex justify-center items-center z-50 transition-opacity duration-300">
-        <div id="modalContentContainer" class="modal-background p-8 rounded-xl shadow-2xl max-w-lg w-full">
+        <div id="modalContentContainer" class="w-full h-full flex items-center justify-center transition-all duration-300">
             
             <!-- === Main Menu Content (Home Screen) === -->
-            <div id="mainMenuContent" class="modal-screen">
-                <h2 class="text-3xl font-bold mb-8 text-center">Block Link</h2>
-                <div class="flex flex-col gap-4">
-                    <button id="mainMenuPlayBtn" class="btn text-2xl py-4">Classic Mode</button>
-                    <button id="mainMenuSettingsBtn" class="btn btn-menu text-xl py-4">Settings</button>
+            <div id="mainMenuContent" class="modal-screen text-center p-8 flex flex-col items-center justify-center w-full h-full main-menu-bg">
+                <h2 class="text-6xl font-extrabold mb-12 accent-title-text tracking-wider">BLOCK LINK</h2>
+                <div class="flex flex-col gap-6 w-full max-w-xs"> 
+                    <button id="mainMenuPlayBtn" class="btn btn-menu text-2xl py-5">Classic</button>
+                    <button id="mainMenuSettingsBtn" class="btn btn-menu text-2xl py-5">Settings</button>
                 </div>
-                <!-- Displaying only the High Score -->
-                <div class="text-sm text-center mt-6 opacity-75">
+                <div class="text-lg font-bold mt-12 opacity-85 accent-highlight-text">
                     High Score: <span id="highScore">0</span>
                 </div>
             </div>
 
             <!-- === Settings Content === -->
-            <div id="settingsContent" class="modal-screen hidden">
-                <h2 class="text-3xl font-bold mb-6 text-center">Settings</h2>
+            <div id="settingsContent" class="modal-screen hidden modal-background p-8 rounded-xl shadow-2xl max-w-sm w-full">
+                <h2 class="text-3xl font-bold mb-6 text-center accent-title-text">Settings</h2>
                 
                 <div class="flex flex-col gap-6 text-lg mb-8">
                     
-                    <!-- Sound Toggle -->
+                    <div class="flex justify-between items-center bg-black bg-opacity-20 p-3 rounded-lg">
+                        <span>Light/Dark Mode:</span>
+                        <div id="darkModeToggle" class="toggle-switch"></div>
+                    </div>
+
                     <div class="flex justify-between items-center bg-black bg-opacity-20 p-3 rounded-lg">
                         <span>Sound Effects:</span>
                         <div id="soundToggle" class="toggle-switch"></div>
                     </div>
 
-                    <!-- Vibration Toggle (Mobile Accessibility) -->
                     <div class="flex justify-between items-center bg-black bg-opacity-20 p-3 rounded-lg">
                         <span>Vibration Feedback:</span>
                         <div id="vibrationToggle" class="toggle-switch"></div>
                     </div>
                     
-                    <!-- Back Home Button (for the initial request) -->
-                    <button id="settingsBackHomeBtn" class="btn btn-menu w-full mt-2">Back to Home</button>
+                    <div class="flex justify-between items-center bg-black bg-opacity-20 p-3 rounded-lg">
+                        <span>Block Style (<span id="blockStyleLabel" class="accent-highlight-text">Polished</span>):</span>
+                        <div id="blockStyleToggle" class="toggle-switch"></div>
+                    </div>
 
-                    <!-- Theme Selection -->
                     <div class="flex flex-col">
-                        <label class="font-bold mb-2 text-yellow-300">Color Theme:</label>
-                        <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
-                            <button id="theme-dark-btn" class="btn btn-menu py-2 text-sm" data-theme="dark">Dark Mode</button>
-                            <button id="theme-light-btn" class="btn btn-menu py-2 text-sm" data-theme="light">Light Mode</button>
-                            <button id="theme-forest-btn" class="btn btn-menu py-2 text-sm" data-theme="forest">Forest</button>
-                            <button id="theme-upside-down-btn" class="btn btn-menu py-2 text-sm" data-theme="upside-down">Upside Down</button>
-                            <button id="theme-ocean-btn" class="btn btn-menu py-2 text-sm" data-theme="ocean">Ocean</button>
+                        <label class="font-bold mb-2 text-base accent-highlight-text">Color Palette:</label>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button class="btn btn-menu py-2 text-sm" data-theme="default">Default</button>
+                            <button class="btn btn-menu py-2 text-sm" data-theme="forest">Forest</button>
+                            <button class="btn btn-menu py-2 text-sm" data-theme="upside-down">Upside Down</button>
+                            <button class="btn btn-menu py-2 text-sm" data-theme="ocean">Ocean</button>
+                            <button class="btn btn-menu py-2 text-sm" data-theme="sunset">Sunset</button>
+                            <button class="btn btn-menu py-2 text-sm" data-theme="midnight">Midnight</button>
+                            <button class="btn btn-menu py-2 text-sm" data-theme="lava">Lava</button>
+                            <button class="btn btn-menu py-2 text-sm" data-theme="mint">Mint</button>
+                            <button class="btn btn-menu py-2 text-sm" data-theme="grape">Grape</button>
                         </div>
                     </div>
                     
-                    <!-- Help Button -->
                     <button id="helpBtn" class="btn btn-menu">How to Play</button>
                     
                 </div>
@@ -221,25 +437,27 @@
             </div>
             
             <!-- === Help Content Modal === -->
-            <div id="helpContent" class="modal-screen hidden">
-                <h2 class="text-3xl font-bold mb-6 text-center">How to Play</h2>
+            <div id="helpContent" class="modal-screen hidden modal-background p-8 rounded-xl shadow-2xl max-w-sm w-full">
+                <h2 class="text-3xl font-bold mb-6 text-center accent-title-text">How to Play</h2>
                 <div class="text-sm space-y-4 opacity-80">
                     <p>The goal of Block Link is to clear colored blocks by linking them together.</p>
                     <ul class="list-disc list-inside space-y-2 ml-4">
-                        <li><span class="font-bold text-yellow-300">Linking:</span> Tap or click a block and drag your finger/mouse across neighboring blocks of the *same color*.</li>
-                        <li><span class="font-bold text-yellow-300">Movement:</span> Links must be horizontal or vertical (not diagonal).</li>
-                        <li><span class="font-bold text-yellow-300">Clearing:</span> A link must contain a minimum of **3** blocks to clear.</li>
-                        <li><span class="font-bold text-yellow-300">Gravity:</span> Cleared blocks disappear, and the blocks above fall down. New blocks fill in from the top.</li>
-                        <li><span class="font-bold text-red-400">Game Over:</span> The game ends when there are no more possible links of 3 or more blocks remaining on the board.</li>
+                        <li><span class="font-bold accent-highlight-text">Linking:</span> Tap or click a block and drag your finger/mouse across neighboring blocks of the *same color*.</li>
+                        <li><span class="font-bold accent-highlight-text">Movement:</span> Links must be horizontal or vertical (not diagonal).</li>
+                        <li><span class="font-bold accent-warning-text">Clearing:</span> A link must contain a minimum of **3** blocks to clear.</li>
+                        <li><span class="font-bold accent-warning-text">Game Over:</span> The game ends when there are no more possible links of 3 or more blocks remaining on the board.</li>
                     </ul>
                 </div>
                 <button id="helpBackBtn" class="btn btn-menu w-full mt-6">Got It!</button>
             </div>
 
             <!-- === Game Over Content === -->
-            <div id="gameOverContent" class="modal-screen hidden">
-                <h2 class="text-3xl font-bold text-red-400 mb-3 text-center">Game Over</h2>
-                <p id="finalScoreText" class="text-lg mb-5 opacity-80"></p>
+            <div id="gameOverContent" class="modal-screen hidden modal-background p-8 rounded-xl shadow-2xl max-w-sm w-full">
+                <h2 class="text-3xl font-bold accent-warning-text mb-3 text-center">Game Over</h2>
+                <p id="finalScoreText" class="text-lg mb-5 text-center opacity-80"></p>
+                <div id="newHighScoreMessage" class="text-2xl font-extrabold new-high-score-text mb-6 text-center" style="display:none;">
+                    NEW HIGH SCORE!
+                </div>
                 <button id="gameOverPlayAgainBtn" class="btn w-full">Play Again</button>
                 <button id="gameOverMenuBtn" class="btn btn-menu mt-2 w-full">Home</button>
             </div>
@@ -262,14 +480,7 @@
         let BLOCK_SIZE = 0; 
         let CANVAS_SIZE = 0; 
         
-        const COLOR_MAP = [
-            '#4A90E2', // Blue
-            '#50E3C2', // Teal
-            '#F5A623', // Orange
-            '#D0021B', // Red
-            '#9013FE', // Purple
-            '#F8E71C'  // Yellow
-        ];
+        let COLOR_MAP = []; 
         const MIN_PATH_LENGTH = 3;
 
         // Core Game State
@@ -284,10 +495,14 @@
         
         // Settings State
         let settings = {
-            theme: 'dark',
+            mode: 'dark', // new: 'dark' or 'light'
+            palette: 'default', // new: 'forest', 'sunset', etc.
             vibration: false,
-            soundEnabled: true 
+            soundEnabled: true,
+            blockStyle: 'polished' // 'classic' or 'polished' (was '3d')
         };
+        
+        const BACKDROP_CLASSES = ['bg-black/50', 'backdrop-blur-sm']; 
 
         // Canvas & Contexts
         const canvas = document.getElementById('gameCanvas');
@@ -299,16 +514,29 @@
         const highScoreDisplay = document.getElementById('highScore');
         const gameCanvas = document.getElementById('gameCanvas');
         const gameInfoBar = document.getElementById('gameInfoBar');
+        const settingsBackBtn = document.getElementById('settingsBackBtn');
+        const blockStyleToggle = document.getElementById('blockStyleToggle');
+        const blockStyleLabel = document.getElementById('blockStyleLabel');
+        const homeBtn = document.getElementById('homeBtn'); 
+        const newHighScoreMessage = document.getElementById('newHighScoreMessage');
+        
+        // New Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
 
         // Modal Elements
         const gameModal = document.getElementById('gameModal');
+        const modalContentContainer = document.getElementById('modalContentContainer'); 
+        const mainMenuContent = document.getElementById('mainMenuContent'); 
         const finalScoreText = document.getElementById('finalScoreText');
         const vibrationToggle = document.getElementById('vibrationToggle');
         const soundToggle = document.getElementById('soundToggle');
         const body = document.body;
+        
+        // Splash Screen Element
+        const splashScreen = document.getElementById('splashScreen');
 
         const modalScreens = {
-            main: document.getElementById('mainMenuContent'),
+            main: mainMenuContent,
             settings: document.getElementById('settingsContent'),
             game_over: document.getElementById('gameOverContent'),
             help: document.getElementById('helpContent')
@@ -371,34 +599,63 @@
                         userId = user.uid;
                         listenForHighScores();
                         loadSettings();
-                        showScreen('main'); 
+                        startSplashScreenSequence(); 
                     } else {
-                        highScoreDisplay.textContent = 'N/A';
+                        // If auth fails or is anonymous, we still attempt to load public high score
+                        listenForHighScores();
                         loadSettings();
-                        showScreen('main'); 
+                        startSplashScreenSequence(); 
                     }
                 });
 
             } catch (error) {
                 console.error("Firebase Initialization Error:", error);
-                highScoreDisplay.textContent = 'N/A';
+                // If init fails entirely, we ensure the game still loads with local settings.
                 loadSettings();
-                showScreen('main'); 
+                startSplashScreenSequence(); 
             }
+        }
+        
+        // --- SPLASH SCREEN LOGIC ---
+        const SPLASH_DURATION_MS = 2000;
+        
+        function startSplashScreenSequence() {
+            gameContainer.style.visibility = 'hidden';
+            gameModal.style.visibility = 'hidden';
+            splashScreen.style.opacity = '1';
+            
+            setTimeout(() => {
+                splashScreen.style.opacity = '0';
+                
+                setTimeout(() => {
+                    splashScreen.style.display = 'none';
+                    gameContainer.style.visibility = 'visible';
+                    showScreen('main');
+                }, 1000); 
+                
+            }, SPLASH_DURATION_MS);
         }
 
         // --- FIREBASE DATA FUNCTIONS ---
         function listenForHighScores() {
             if (!db) return;
             const docRef = doc(db, HIGH_SCORE_PATH);
+            
+            // Listen in real-time for the global high score
             onSnapshot(docRef, (docSnap) => {
                 if (docSnap.exists()) {
                     const data = docSnap.data();
                     highScore = data.highScore || 0;
-                    highScoreDisplay.textContent = highScore.toLocaleString();
+                } else {
+                    // Document doesn't exist yet (first run or database not initialized).
+                    highScore = 0;
                 }
+                // Always update the display, showing 0 if it's the first time
+                highScoreDisplay.textContent = highScore.toLocaleString();
             }, (error) => {
                 console.error("Error listening to high score:", error);
+                // Fallback display if there's an error
+                highScoreDisplay.textContent = '0';
             });
         }
 
@@ -406,26 +663,52 @@
             if (!db || !userId) return;
 
             if (score > highScore) {
-                highScore = score;
-                highScoreDisplay.textContent = highScore.toLocaleString();
+                
+                // This is where the actual save happens. The onSnapshot listener above
+                // will automatically detect this change and update the 'highScore' variable
+                // and the main menu display (highScoreDisplay).
                 
                 const docRef = doc(db, HIGH_SCORE_PATH);
                 const newScoreData = {
-                    highScore: highScore,
-                    userId: userId,
+                    highScore: score, // Use current score for saving
+                    userId: userId, 
                     timestamp: new Date()
                 };
 
                 try {
-                    await setDoc(docRef, newScoreData, { merge: true });
-                    console.log("High score updated successfully:", highScore);
+                    const maxRetries = 5;
+                    for (let i = 0; i < maxRetries; i++) {
+                        try {
+                            await setDoc(docRef, newScoreData, { merge: true });
+                            console.log("High score updated successfully:", score);
+                            return; 
+                        } catch (e) {
+                            if (i === maxRetries - 1) throw e; 
+                            const delay = Math.pow(2, i) * 1000;
+                            await new Promise(resolve => setTimeout(resolve, delay));
+                        }
+                    }
                 } catch (e) {
-                    console.error("Error updating high score:", e);
+                    console.error("Error updating high score after retries:", e);
                 }
             }
         }
         
         // --- SETTINGS MANAGEMENT ---
+        
+        function getBlockColors() {
+            COLOR_MAP = [];
+            const style = getComputedStyle(document.body); 
+            for(let i = 1; i <= 6; i++) {
+                const color = style.getPropertyValue(`--block-color-${i}`).trim();
+                if (color) {
+                    COLOR_MAP.push(color);
+                } else {
+                    COLOR_MAP.push('#CCCCCC'); 
+                }
+            }
+        }
+
         function saveSettings() {
             try { localStorage.setItem('blockLinkSettings', JSON.stringify(settings)); } catch (e) { console.error("Could not save settings to localStorage:", e); }
         }
@@ -436,13 +719,17 @@
                 if (storedSettings) { settings = JSON.parse(storedSettings); }
             } catch (e) { console.error("Could not load settings from localStorage:", e); }
 
+            if (typeof settings.mode === 'undefined') { settings.mode = 'dark'; }
+            if (typeof settings.palette === 'undefined') { settings.palette = 'default'; }
             if (typeof settings.soundEnabled === 'undefined') { settings.soundEnabled = true; }
             if (typeof settings.vibration === 'undefined') { settings.vibration = false; }
-            if (typeof settings.theme === 'undefined') { settings.theme = 'dark'; }
+            if (!['classic', 'polished'].includes(settings.blockStyle)) { settings.blockStyle = 'polished'; }
 
-            applyTheme(settings.theme);
+            applyTheme(settings.palette, settings.mode); 
             updateVibrationToggleUI(settings.vibration);
             updateSoundToggleUI(settings.soundEnabled); 
+            updateBlockStyleToggleUI(settings.blockStyle); 
+            updateDarkModeToggleUI(settings.mode);
         }
         
         function updateSoundToggleUI(isActive) {
@@ -455,20 +742,6 @@
             saveSettings();
         }
 
-        function applyTheme(themeName) {
-            body.className = '';
-            body.classList.add(`theme-${themeName}`);
-            settings.theme = themeName;
-            saveSettings();
-            
-            document.querySelectorAll('#settingsContent .btn[data-theme]').forEach(btn => {
-                btn.classList.remove('active-theme');
-                if (btn.dataset.theme === themeName) {
-                    btn.classList.add('active-theme');
-                }
-            });
-        }
-        
         function updateVibrationToggleUI(isActive) {
             if (isActive) { vibrationToggle.classList.add('active'); } else { vibrationToggle.classList.remove('active'); }
         }
@@ -479,60 +752,144 @@
             saveSettings();
             if (settings.vibration) { triggerVibration(20); }
         }
+        
+        function updateBlockStyleToggleUI(style) {
+            const isActive = style === 'polished';
+            blockStyleLabel.textContent = isActive ? 'Polished' : 'Classic';
+            if (isActive) { blockStyleToggle.classList.add('active'); } else { blockStyleToggle.classList.remove('active'); }
+            
+            if (gameCanvas.style.display !== 'none') drawGame();
+        }
+
+        function toggleBlockStyle() {
+            settings.blockStyle = settings.blockStyle === 'classic' ? 'polished' : 'classic';
+            updateBlockStyleToggleUI(settings.blockStyle);
+            saveSettings();
+        }
+        
+        function updateDarkModeToggleUI(mode) {
+             if (mode === 'dark') { darkModeToggle.classList.remove('active'); } 
+             else { darkModeToggle.classList.add('active'); }
+        }
+
+        function toggleDarkMode() {
+            settings.mode = settings.mode === 'dark' ? 'light' : 'dark';
+            updateDarkModeToggleUI(settings.mode);
+            applyTheme(settings.palette, settings.mode);
+            saveSettings();
+        }
+        
+        function applyTheme(paletteName, mode = settings.mode) {
+            settings.palette = paletteName;
+            settings.mode = mode;
+
+            body.classList.remove('mode-dark', 'mode-light');
+            body.classList.add(`mode-${mode}`);
+            
+            body.className = body.className.split(' ').filter(c => !c.startsWith('theme-')).join(' ');
+            body.classList.add(`theme-${paletteName}`);
+
+            getBlockColors(); 
+            
+            document.querySelectorAll('#settingsContent .btn[data-theme]').forEach(btn => {
+                btn.classList.remove('active-theme');
+                if (btn.dataset.theme === paletteName) {
+                    btn.classList.add('active-theme');
+                }
+            });
+            
+            if (gameCanvas.style.display !== 'none') drawGame();
+            
+            const shadowColor = getComputedStyle(document.body).getPropertyValue('--color-accent').trim();
+            gameContainer.style.boxShadow = `0 0 40px ${shadowColor}4D`; 
+        }
 
         function triggerVibration(duration = 100) {
             if (settings.vibration && 'vibrate' in navigator) {
                 navigator.vibrate(duration);
             }
         }
+        
+        function setModalContentActive(screenName) {
+            Object.values(modalScreens).forEach(el => el.classList.add('hidden'));
+            const screenEl = modalScreens[screenName];
+            if (screenEl) { 
+                screenEl.classList.remove('hidden'); 
+            }
+            
+            if (screenName === 'main') {
+                 modalContentContainer.classList.add('h-full', 'w-full');
+                 modalContentContainer.classList.remove('max-w-sm', 'w-auto');
+                 gameModal.classList.remove('justify-center', 'items-center');
+            } else if (['settings', 'game_over', 'help'].includes(screenName)) {
+                 modalContentContainer.classList.remove('h-full', 'w-full');
+                 modalContentContainer.classList.add('max-w-sm', 'w-auto');
+                 gameModal.classList.add('justify-center', 'items-center');
+            }
+        }
 
         // --- UI & GAME FLOW CONTROL ---
+        let gameActive = false;
+        
         function showScreen(screenName) {
-            // Hide all screens
-            Object.values(modalScreens).forEach(el => el.classList.add('hidden'));
-
+            
             if (screenName !== 'game') {
-                // Show modal overlay
+                gameActive = (gameCanvas.style.display !== 'none' && !isGameOver);
+                
+                const needsBackdrop = ['settings', 'game_over', 'help'].includes(screenName);
+
+                if (needsBackdrop) {
+                     gameModal.classList.add(...BACKDROP_CLASSES);
+                } else {
+                     gameModal.classList.remove(...BACKDROP_CLASSES);
+                }
+
                 gameModal.style.visibility = 'visible';
                 gameModal.style.opacity = '0';
                 setTimeout(() => gameModal.style.opacity = '1', 10);
                 gameCanvas.style.display = 'none';
                 gameInfoBar.style.display = 'none';
                 
-                // Show requested screen content
-                const screenEl = modalScreens[screenName];
-                if (screenEl) { screenEl.classList.remove('hidden'); }
+                setModalContentActive(screenName);
+                
+                if (screenName === 'settings' && gameActive) {
+                    settingsBackBtn.textContent = 'Continue Game';
+                    settingsBackBtn.dataset.target = 'game';
+                } else {
+                    settingsBackBtn.textContent = 'Back to Home';
+                    settingsBackBtn.dataset.target = 'main';
+                }
+                
             } else {
-                // Hide modal and start game
                 gameModal.style.opacity = '0';
                 setTimeout(() => { gameModal.style.visibility = 'hidden'; }, 300);
                 gameCanvas.style.display = 'block';
                 gameInfoBar.style.display = 'flex';
-                // Initialize/reset game on play
-                initGame(); 
+                gameModal.classList.remove(...BACKDROP_CLASSES); 
+                
+                if (score === 0 || isGameOver) {
+                     initGame(); 
+                } else {
+                     calculateDimensions();
+                     drawGame();
+                }
             }
         }
 
 
         // --- DYNAMIC DIMENSION CALCULATION ---
         function calculateDimensions() {
-            // Get the current width of the game container, excluding padding
             const containerWidth = gameContainer.clientWidth - 30; 
-            
-            // CANVAS_SIZE will be the largest square that fits, using the container width
             const size = containerWidth; 
             
             BLOCK_SIZE = Math.floor(size / GRID_SIZE);
             CANVAS_SIZE = BLOCK_SIZE * GRID_SIZE;
             
-            // Set canvas element attributes for drawing resolution
             canvas.width = CANVAS_SIZE;
             canvas.height = CANVAS_SIZE;
             
-            // Set max-width of info bar to match the canvas
             gameInfoBar.style.maxWidth = `${CANVAS_SIZE}px`;
             
-            // When Tone.js is ready and game is active, start audio context
             if (Tone.context.state !== 'running') {
                  Tone.start().then(() => { console.log("Audio context started."); });
             }
@@ -541,7 +898,6 @@
         // --- GAME LOGIC FUNCTIONS ---
 
         function initGame() {
-            // 1. Calculate the dynamic dimensions based on viewport/container size
             calculateDimensions(); 
             
             score = 0;
@@ -550,16 +906,16 @@
             selectedPath = [];
             isLinking = false;
             
-            // Fill the board randomly
             board = Array(GRID_SIZE).fill(0).map(() => 
                 Array(GRID_SIZE).fill(0).map(() => Math.floor(Math.random() * COLOR_MAP.length) + 1)
             );
             
-            // Ensure the board is solvable initially (optional, but good practice)
-            while (!checkPossibleMoves()) {
+            let attempts = 0;
+            while (!checkPossibleMoves() && attempts < 100) {
                  board = Array(GRID_SIZE).fill(0).map(() => 
                     Array(GRID_SIZE).fill(0).map(() => Math.floor(Math.random() * COLOR_MAP.length) + 1)
                 );
+                attempts++;
             }
 
             updateScoreDisplay();
@@ -568,8 +924,18 @@
 
         function endGame() {
              isGameOver = true;
-             updateHighScore();
-             finalScoreText.textContent = `Your Score: ${score.toLocaleString()} | High Score: ${highScore.toLocaleString()}`;
+             
+             const isNewHighScore = score > highScore;
+             
+             if (isNewHighScore) {
+                 updateHighScore(); // Save the new score to Firebase
+                 newHighScoreMessage.style.display = 'block';
+                 finalScoreText.textContent = `You cleared ${totalCleared} blocks for a score of ${score.toLocaleString()}!`;
+             } else {
+                 newHighScoreMessage.style.display = 'none';
+                 finalScoreText.textContent = `Your Score: ${score.toLocaleString()} | Current High Score: ${highScore.toLocaleString()}`;
+             }
+             
              showScreen('game_over');
         }
         
@@ -579,10 +945,7 @@
                     const color = board[y][x];
                     if (color === 0) continue;
 
-                    // Check horizontal links (need 3 total, so check up to x+2)
                     if (x + 2 < GRID_SIZE && board[y][x + 1] === color && board[y][x + 2] === color) { return true; }
-
-                    // Check vertical links (need 3 total, so check up to y+2)
                     if (y + 2 < GRID_SIZE && board[y + 1][x] === color && board[y + 2][x] === color) { return true; }
                 }
             }
@@ -597,28 +960,24 @@
             const gridX = Math.floor(canvasX / BLOCK_SIZE);
             const gridY = Math.floor(canvasY / BLOCK_SIZE);
 
-            if (gridX >= 0 && gridX < GRID_SIZE && gridY >= 0 && gridY < GRID_SIZE) {
+            if (gridX >= 0 && gridX < GRID_SIZE && gridY < GRID_SIZE) {
                 return { x: gridX, y: gridY };
             }
             return null;
         }
         
         function isAdjacent(x1, y1, x2, y2) {
-            return (Math.abs(x1 - x2) + Math.abs(y1 - y2) === 1); // Manhattan distance of 1
+            return (Math.abs(x1 - x2) + Math.abs(y1 - y2) === 1); 
         }
         
-        // --- Input Handler (BUG FIX HERE) ---
         function getCanvasCoordinates(e) {
             const rect = canvas.getBoundingClientRect();
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
             const clientY = e.touches ? e.touches[0].clientY : e.clientY;
             
-            // Calculate raw coordinates relative to the visible element
             const rawX = clientX - rect.left;
             const rawY = clientY - rect.top;
 
-            // BUG FIX: Scale the raw coordinates based on the difference between 
-            // the CSS display size (rect.width/height) and the internal drawing size (CANVAS_SIZE)
             const scaleX = CANVAS_SIZE / rect.width;
             const scaleY = CANVAS_SIZE / rect.height;
 
@@ -632,7 +991,6 @@
             if (isGameOver || gameCanvas.style.display === 'none') return;
             e.preventDefault();
 
-            // IMPORTANT: Recalculate dimensions on start, which also handles audio context
             calculateDimensions(); 
 
             const pos = getCanvasCoordinates(e); 
@@ -707,13 +1065,11 @@
             selectedPath = [];
             drawGame();
             
-            // Pause to show the clearance effect
             await new Promise(resolve => setTimeout(resolve, 150)); 
 
             applyGravity();
             drawGame();
             
-            // Refill new blocks
             refillNewBlocks();
             drawGame();
 
@@ -727,7 +1083,6 @@
                     if (board[y][x] === 0) {
                         emptySlots++;
                     } else if (emptySlots > 0) {
-                        // Move block down
                         board[y + emptySlots][x] = board[y][x];
                         board[y][x] = 0;
                     }
@@ -739,7 +1094,6 @@
             for (let x = 0; x < GRID_SIZE; x++) {
                 for (let y = 0; y < GRID_SIZE; y++) {
                     if (board[y][x] === 0) {
-                        // Generate a random color index (1 to COLOR_MAP.length)
                         board[y][x] = Math.floor(Math.random() * COLOR_MAP.length) + 1; 
                     }
                 }
@@ -751,7 +1105,6 @@
              comboText.id = 'comboText';
              comboText.textContent = `${count}x Combo!`;
              
-             // Get canvas position relative to viewport
              const rect = canvas.getBoundingClientRect();
              comboText.style.left = `${rect.left + rect.width / 2}px`;
              comboText.style.top = `${rect.top + rect.height / 2}px`;
@@ -765,58 +1118,140 @@
         }
 
         // --- RENDERING FUNCTIONS ---
-        function drawBlockCell(ctx, x, y, colorIndex, isSelected = false) {
-            if (colorIndex === 0 || BLOCK_SIZE === 0) return;
-            const color = COLOR_MAP[colorIndex - 1];
-            
-            ctx.globalAlpha = 1.0;
-            ctx.fillStyle = color;
-            ctx.strokeStyle = 'transparent';
-            ctx.lineWidth = 0;
-            ctx.shadowBlur = 0;
+        
+        function getColor(colorIndex) {
+             return COLOR_MAP[colorIndex - 1] || '#CCCCCC';
+        }
+        
+        function adjustLuminosity(hex, lum) {
+            hex = String(hex).replace(/[^0-9a-f]/gi, '');
+            if (hex.length < 6) {
+                hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+            }
+            lum = lum || 0;
 
+            let rgb = "#", c, i;
+            for (i = 0; i < 3; i++) {
+                c = parseInt(hex.substr(i * 2, 2), 16);
+                c = Math.round(Math.min(255, Math.max(0, c + (c * lum))));
+                rgb += ("00" + c.toString(16)).substr(c.toString(16).length);
+            }
+            return rgb;
+        }
+
+
+        function drawClassicBlockCell(ctx, x, y, colorIndex, isSelected = false) {
+            if (colorIndex === 0 || BLOCK_SIZE === 0) return;
+            const color = getColor(colorIndex);
+            
+            ctx.shadowBlur = 0;
             const padding = BLOCK_SIZE * 0.08; 
             const drawSize = BLOCK_SIZE - 2 * padding;
             const drawX = x * BLOCK_SIZE + padding;
             const drawY = y * BLOCK_SIZE + padding;
             const radius = BLOCK_SIZE * 0.13; 
             
-            if (isSelected) {
-                ctx.shadowColor = color;
-                ctx.shadowBlur = 10;
-                ctx.strokeStyle = 'var(--color-canvas-bg)';
-                ctx.lineWidth = 4; 
-            }
-
-            // Draw a rounded rectangle block
+            ctx.fillStyle = color;
             ctx.beginPath();
-            ctx.moveTo(drawX + radius, drawY);
-            ctx.lineTo(drawX + drawSize - radius, drawY);
-            ctx.arc(drawX + drawSize - radius, drawY + radius, radius, 1.5 * Math.PI, 2 * Math.PI);
-            ctx.lineTo(drawX + drawSize, drawY + drawSize - radius);
-            ctx.arc(drawX + drawSize - radius, drawY + drawSize - radius, radius, 0, 0.5 * Math.PI);
-            ctx.lineTo(drawX + radius, drawY + drawSize);
-            ctx.arc(drawX + radius, drawY + drawSize - radius, radius, 0.5 * Math.PI, Math.PI);
-            ctx.lineTo(drawX, drawY + radius);
-            ctx.arc(drawX + radius, drawY + radius, radius, Math.PI, 1.5 * Math.PI);
-            ctx.closePath();
+            ctx.roundRect(drawX, drawY, drawSize, drawSize, radius);
+            ctx.fill();
+
+            if (isSelected) {
+                ctx.strokeStyle = 'rgba(255, 255, 255, 1.0)';
+                ctx.lineWidth = 3; 
+                ctx.stroke();
+            }
+        }
+        
+        function drawPolishedBlockCell(ctx, x, y, colorIndex, isSelected = false) {
+            if (colorIndex === 0 || BLOCK_SIZE === 0) return;
             
+            const baseColor = getColor(colorIndex);
+            
+            const padding = BLOCK_SIZE * 0.08; 
+            const drawSize = BLOCK_SIZE - 2 * padding;
+            const drawX = x * BLOCK_SIZE + padding;
+            const drawY = y * BLOCK_SIZE + padding;
+            const radius = BLOCK_SIZE * 0.15; 
+            const centerX = drawX + drawSize / 2;
+            const centerY = drawY + drawSize / 2;
+
+            const lighterColor = adjustLuminosity(baseColor, 0.4); 
+            const darkerColor = adjustLuminosity(baseColor, -0.3); 
+            const shadowColor = adjustLuminosity(baseColor, -0.6); 
+
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = shadowColor;
+            ctx.beginPath();
+            ctx.roundRect(drawX, drawY, drawSize, drawSize, radius);
             ctx.fill();
             
-            if (isSelected) { ctx.stroke(); }
+            const mainGradient = ctx.createRadialGradient(
+                centerX, centerY, drawSize * 0.1, 
+                centerX, centerY, drawSize * 0.8
+            );
+            mainGradient.addColorStop(0, lighterColor); 
+            mainGradient.addColorStop(0.7, baseColor);  
+            mainGradient.addColorStop(1, darkerColor);  
+
+            ctx.fillStyle = mainGradient;
             
-            ctx.shadowBlur = 0;
-            ctx.lineWidth = 1;
+            ctx.save();
+            ctx.beginPath();
+            ctx.roundRect(drawX, drawY, drawSize, drawSize, radius);
+            ctx.clip();
+            ctx.fill();
+            ctx.restore();
+
+            const bevelGradient = ctx.createLinearGradient(drawX, drawY, drawX + drawSize, drawY + drawSize);
+            bevelGradient.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
+            bevelGradient.addColorStop(0.2, 'rgba(255, 255, 255, 0.05)');
+            bevelGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            
+            ctx.fillStyle = bevelGradient;
+            ctx.beginPath();
+            ctx.roundRect(drawX, drawY, drawSize, drawSize, radius);
+            ctx.fill();
+            
+            if (isSelected) {
+                const selectionGradient = ctx.createRadialGradient(
+                    centerX, centerY, drawSize * 0.1, 
+                    centerX, centerY, drawSize * 0.6
+                );
+                selectionGradient.addColorStop(0, 'rgba(255, 255, 255, 0.6)');
+                selectionGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+                ctx.fillStyle = selectionGradient;
+                ctx.beginPath();
+                ctx.roundRect(drawX, drawY, drawSize, drawSize, radius);
+                ctx.fill();
+            }
+
+            ctx.strokeStyle = adjustLuminosity(baseColor, isSelected ? 0.7 : 0.1); 
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.roundRect(drawX, drawY, drawSize, drawSize, radius);
+            ctx.stroke();
         }
+
 
         function drawGrid() {
             if (CANVAS_SIZE === 0) return; 
             ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
             
-            // Draw grid lines (optional, can be hidden for a cleaner look)
+            const drawBlock = settings.blockStyle === 'polished' ? drawPolishedBlockCell : drawClassicBlockCell;
+            
+            for (let y = 0; y < GRID_SIZE; y++) {
+                for (let x = 0; x < GRID_SIZE; x++) {
+                    const isCellSelected = selectedPath.some(p => p.x === x && p.y === y);
+                    drawBlock(ctx, x, y, board[y][x], isCellSelected);
+                }
+            }
+            
             ctx.strokeStyle = 'var(--color-grid-line)';
             ctx.lineWidth = 1;
-            for (let i = 1; i < GRID_SIZE; i++) {
+            ctx.globalAlpha = 0.3;
+            for (let i = 0; i < GRID_SIZE; i++) {
                 ctx.beginPath();
                 ctx.moveTo(i * BLOCK_SIZE, 0);
                 ctx.lineTo(i * BLOCK_SIZE, CANVAS_SIZE);
@@ -827,23 +1262,16 @@
                 ctx.lineTo(CANVAS_SIZE, i * BLOCK_SIZE);
                 ctx.stroke();
             }
-
-            // Draw blocks
-            for (let y = 0; y < GRID_SIZE; y++) {
-                for (let x = 0; x < GRID_SIZE; x++) {
-                    const isCellSelected = selectedPath.some(p => p.x === x && p.y === y);
-                    drawBlockCell(ctx, x, y, board[y][x], isCellSelected);
-                }
-            }
+            ctx.globalAlpha = 1.0;
         }
 
         function drawSelectionPath() {
             if (selectedPath.length < 2 || BLOCK_SIZE === 0) return;
 
-            ctx.lineWidth = 10;
+            ctx.lineWidth = BLOCK_SIZE * 0.15; 
             ctx.lineJoin = 'round';
             ctx.lineCap = 'round';
-            ctx.strokeStyle = COLOR_MAP[selectedColorIndex - 1];
+            ctx.strokeStyle = getColor(selectedColorIndex);
             ctx.shadowColor = ctx.strokeStyle;
             ctx.shadowBlur = 15;
             
@@ -865,11 +1293,10 @@
             ctx.stroke();
             ctx.shadowBlur = 0;
             
-            // Draw small dot/circle on the last selected cell for highlight
+             ctx.fillStyle = 'var(--color-warning)';
              const last = center(selectedPath[selectedPath.length - 1].x, selectedPath[selectedPath.length - 1].y);
-             ctx.fillStyle = 'white';
              ctx.beginPath();
-             ctx.arc(last.cx, last.cy, 5, 0, Math.PI * 2);
+             ctx.arc(last.cx, last.cy, BLOCK_SIZE * 0.1, 0, Math.PI * 2);
              ctx.fill();
         }
 
@@ -881,16 +1308,13 @@
         // --- EVENT LISTENERS ---
 
         function handleResize() {
-            // Recalculate dimensions on resize
             calculateDimensions();
-            // Redraw only if the canvas is visible (i.e., game is running)
             if (gameCanvas.style.display !== 'none') {
                 drawGame();
             }
         }
 
         function addEventListeners() {
-            // Game Input Events
             canvas.addEventListener('mousedown', onLinkStart);
             window.addEventListener('mousemove', onLinkMove);
             window.addEventListener('mouseup', onLinkEnd);
@@ -898,32 +1322,57 @@
             window.addEventListener('touchmove', onLinkMove);
             canvas.addEventListener('touchend', onLinkEnd);
 
-            // Responsive Event
             window.addEventListener('resize', handleResize);
 
-            // Menu Navigation Listeners
             document.getElementById('mainMenuPlayBtn').addEventListener('click', () => showScreen('game'));
             document.getElementById('mainMenuSettingsBtn').addEventListener('click', () => showScreen('settings'));
+            
             document.getElementById('settingsBtn').addEventListener('click', () => showScreen('settings')); 
-            document.getElementById('settingsBackBtn').addEventListener('click', () => showScreen('main'));
-            document.getElementById('settingsBackHomeBtn').addEventListener('click', () => showScreen('main')); // Back home button in settings
+            homeBtn.addEventListener('click', () => showScreen('main')); 
+            
+            settingsBackBtn.addEventListener('click', () => {
+                const target = settingsBackBtn.dataset.target || 'main';
+                showScreen(target);
+            });
+            
             document.getElementById('gameOverPlayAgainBtn').addEventListener('click', () => showScreen('game'));
             document.getElementById('gameOverMenuBtn').addEventListener('click', () => showScreen('main'));
             
-            // Settings Controls
             document.getElementById('helpBtn').addEventListener('click', () => showScreen('help'));
             document.getElementById('helpBackBtn').addEventListener('click', () => showScreen('settings'));
 
-            // Theme Buttons
-            document.getElementById('theme-dark-btn').addEventListener('click', () => applyTheme('dark'));
-            document.getElementById('theme-light-btn').addEventListener('click', () => applyTheme('light'));
-            document.getElementById('theme-forest-btn').addEventListener('click', () => applyTheme('forest'));
-            document.getElementById('theme-upside-down-btn').addEventListener('click', () => applyTheme('upside-down'));
-            document.getElementById('theme-ocean-btn').addEventListener('click', () => applyTheme('ocean'));
+            document.querySelectorAll('#settingsContent .btn[data-theme]').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const paletteName = e.target.dataset.theme;
+                    applyTheme(paletteName, settings.mode);
+                    saveSettings();
+                });
+            });
 
-            // Toggle Controls
             vibrationToggle.addEventListener('click', toggleVibration);
             soundToggle.addEventListener('click', toggleSound);
+            blockStyleToggle.addEventListener('click', toggleBlockStyle);
+            darkModeToggle.addEventListener('click', toggleDarkMode);
+            
+            gameModal.addEventListener('click', (e) => {
+                if (e.target === gameModal) {
+                    let activeScreen = null;
+                    for (const [key, value] of Object.entries(modalScreens)) {
+                        if (!value.classList.contains('hidden')) {
+                            activeScreen = key;
+                            break;
+                        }
+                    }
+
+                    if (activeScreen === 'settings') {
+                        const target = settingsBackBtn.dataset.target || 'main';
+                        showScreen(target);
+                    } else if (activeScreen === 'help') {
+                        showScreen('settings');
+                    }
+                }
+            });
+
         }
 
         // --- GAME START ---
