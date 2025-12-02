@@ -185,24 +185,27 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh; /* Set to full height */
             margin: 0;
             padding: 10px; 
             transition: background 0.5s, color 0.5s;
+            overflow: hidden; /* Prevent body scrollbars */
         }
 
         .game-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            max-width: 480px; 
-            width: 100%;
+            width: 90vw; /* Take up 90% of the viewport width */
+            max-width: 800px; /* Set a large, reasonable maximum for desktop screens */
+            max-height: 95vh; /* Ensure it fits vertically on smaller screens */
             background: var(--ui-background);
             padding: 15px; 
             border-radius: 20px;
             box-shadow: 0 0 40px var(--color-accent, rgba(71, 107, 255, 0.4)); 
             min-width: 280px; 
             transition: background 0.5s, box-shadow 0.5s;
+            overflow-y: hidden; /* Keep game content contained */
         }
         
         #gameCanvas {
@@ -349,11 +352,21 @@
         
         <div class="game-area w-full flex-col items-center">
             
-            <!-- In-Game Info Bar -->
-            <div id="gameInfoBar" class="flex justify-between items-center" style="display: none;">
-                <span class="text-xl font-bold accent-highlight-text">Score: <span id="currentScore">0</span></span>
+            <!-- In-Game Info Bar (High Score Left, Current Score Center, Controls Right) -->
+            <div id="gameInfoBar" class="flex justify-between items-center relative h-10 w-full" style="display: none;">
                 
-                <div class="flex items-center space-x-3">
+                <!-- High Score (Left) -->
+                <span class="text-base font-bold opacity-80 z-10">
+                    Best: <span id="highScoreInGame" class="accent-highlight-text text-lg">0</span>
+                </span>
+                
+                <!-- Current Score (Center, Absolute positioned) -->
+                <span class="text-3xl font-extrabold accent-title-text absolute left-1/2 -translate-x-1/2 z-0">
+                    <span id="currentScore">0</span>
+                </span>
+                
+                <!-- Controls (Right) -->
+                <div class="flex items-center space-x-3 z-10">
                     <button id="homeBtn" class="btn-control">
                         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home">
                             <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
@@ -382,9 +395,6 @@
                 <div class="flex flex-col gap-6 w-full max-w-xs"> 
                     <button id="mainMenuPlayBtn" class="btn btn-menu text-2xl py-5">Classic</button>
                     <button id="mainMenuSettingsBtn" class="btn btn-menu text-2xl py-5">Settings</button>
-                </div>
-                <div class="text-lg font-bold mt-12 opacity-85 accent-highlight-text">
-                    High Score: <span id="highScore">0</span>
                 </div>
             </div>
 
@@ -429,6 +439,10 @@
                         </div>
                     </div>
                     
+                    <div class="text-sm opacity-60 text-center">
+                        Your User ID: <span class="break-all" id="userIdDisplay">...</span>
+                    </div>
+
                     <button id="helpBtn" class="btn btn-menu">How to Play</button>
                     
                 </div>
@@ -511,7 +525,8 @@
         // DOM Elements
         const gameContainer = document.getElementById('gameContainer');
         const currentScoreDisplay = document.getElementById('currentScore');
-        const highScoreDisplay = document.getElementById('highScore');
+        const highScoreDisplayInGame = document.getElementById('highScoreInGame'); // NEW element
+        const userIdDisplay = document.getElementById('userIdDisplay');
         const gameCanvas = document.getElementById('gameCanvas');
         const gameInfoBar = document.getElementById('gameInfoBar');
         const settingsBackBtn = document.getElementById('settingsBackBtn');
@@ -597,10 +612,13 @@
                 onAuthStateChanged(auth, (user) => {
                     if (user) {
                         userId = user.uid;
+                        userIdDisplay.textContent = userId;
+                        console.log("Firebase Auth State: Signed in as", userId);
                         listenForHighScores();
                         loadSettings();
                         startSplashScreenSequence(); 
                     } else {
+                        console.log("Firebase Auth State: Signed out/Anonymous");
                         // If auth fails or is anonymous, we still attempt to load public high score
                         listenForHighScores();
                         loadSettings();
@@ -638,35 +656,38 @@
 
         // --- FIREBASE DATA FUNCTIONS ---
         function listenForHighScores() {
-            if (!db) return;
+            if (!db) {
+                console.warn("Firestore not initialized. Cannot listen for high scores.");
+                return;
+            }
             const docRef = doc(db, HIGH_SCORE_PATH);
             
             // Listen in real-time for the global high score
             onSnapshot(docRef, (docSnap) => {
+                let newHighScore = 0;
                 if (docSnap.exists()) {
                     const data = docSnap.data();
-                    highScore = data.highScore || 0;
+                    newHighScore = data.highScore || 0;
+                    console.log(`[Firestore Read] Document exists. Score: ${newHighScore}`);
                 } else {
-                    // Document doesn't exist yet (first run or database not initialized).
-                    highScore = 0;
+                    console.log("[Firestore Read] Document does not exist yet. Defaulting score to 0.");
                 }
-                // Always update the display, showing 0 if it's the first time
-                highScoreDisplay.textContent = highScore.toLocaleString();
+                
+                highScore = newHighScore;
+                highScoreDisplayInGame.textContent = highScore.toLocaleString();
             }, (error) => {
                 console.error("Error listening to high score:", error);
-                // Fallback display if there's an error
-                highScoreDisplay.textContent = '0';
             });
         }
 
         async function updateHighScore() {
-            if (!db || !userId) return;
+            if (!db || !userId) {
+                console.error("Firestore DB or User ID not available. Cannot save high score.");
+                return;
+            }
 
             if (score > highScore) {
-                
-                // This is where the actual save happens. The onSnapshot listener above
-                // will automatically detect this change and update the 'highScore' variable
-                // and the main menu display (highScoreDisplay).
+                console.log(`[Firestore Write] Attempting to save new high score: ${score} (Current best: ${highScore})`);
                 
                 const docRef = doc(db, HIGH_SCORE_PATH);
                 const newScoreData = {
@@ -680,17 +701,25 @@
                     for (let i = 0; i < maxRetries; i++) {
                         try {
                             await setDoc(docRef, newScoreData, { merge: true });
-                            console.log("High score updated successfully:", score);
+                            console.log("[Firestore Write] High score updated successfully:", score);
+                            
+                            // Proactively update local state for immediate feedback
+                            highScore = score; 
+                            highScoreDisplayInGame.textContent = highScore.toLocaleString();
+                            
                             return; 
                         } catch (e) {
+                            console.warn(`[Firestore Write] Retry attempt ${i + 1} failed:`, e.message);
                             if (i === maxRetries - 1) throw e; 
                             const delay = Math.pow(2, i) * 1000;
                             await new Promise(resolve => setTimeout(resolve, delay));
                         }
                     }
                 } catch (e) {
-                    console.error("Error updating high score after retries:", e);
+                    console.error("[Firestore Write] Error updating high score after retries:", e);
                 }
+            } else {
+                console.log(`[Firestore Write] Score ${score} is not higher than current high score ${highScore}. Skipping save.`);
             }
         }
         
@@ -879,7 +908,8 @@
 
         // --- DYNAMIC DIMENSION CALCULATION ---
         function calculateDimensions() {
-            const containerWidth = gameContainer.clientWidth - 30; 
+            // gameContainer.clientWidth is the width of the box *inside* the padding (90vw / max-width)
+            const containerWidth = gameContainer.clientWidth - 30; // 30 is for overall padding
             const size = containerWidth; 
             
             BLOCK_SIZE = Math.floor(size / GRID_SIZE);
@@ -926,6 +956,7 @@
              isGameOver = true;
              
              const isNewHighScore = score > highScore;
+             console.log(`[Game Over] Final Score: ${score}, Current DB High Score: ${highScore}. New high score? ${isNewHighScore}`);
              
              if (isNewHighScore) {
                  updateHighScore(); // Save the new score to Firebase
@@ -933,7 +964,7 @@
                  finalScoreText.textContent = `You cleared ${totalCleared} blocks for a score of ${score.toLocaleString()}!`;
              } else {
                  newHighScoreMessage.style.display = 'none';
-                 finalScoreText.textContent = `Your Score: ${score.toLocaleString()} | Current High Score: ${highScore.toLocaleString()}`;
+                 finalScoreText.textContent = `Your Score: ${score.toLocaleString()} | Current Best: ${highScore.toLocaleString()}`;
              }
              
              showScreen('game_over');
@@ -1178,14 +1209,14 @@
 
             const lighterColor = adjustLuminosity(baseColor, 0.4); 
             const darkerColor = adjustLuminosity(baseColor, -0.3); 
-            const shadowColor = adjustLuminosity(baseColor, -0.6); 
-
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = shadowColor;
-            ctx.beginPath();
-            ctx.roundRect(drawX, drawY, drawSize, drawSize, radius);
-            ctx.fill();
             
+            // --- ADDED DROP SHADOW FOR SEPARATION ---
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.5)'; 
+            ctx.shadowBlur = BLOCK_SIZE * 0.1; 
+            ctx.shadowOffsetX = BLOCK_SIZE * 0.04;
+            ctx.shadowOffsetY = BLOCK_SIZE * 0.04;
+            // ----------------------------------------
+
             const mainGradient = ctx.createRadialGradient(
                 centerX, centerY, drawSize * 0.1, 
                 centerX, centerY, drawSize * 0.8
@@ -1196,22 +1227,32 @@
 
             ctx.fillStyle = mainGradient;
             
+            // Apply main shape and fill (with shadow)
+            ctx.beginPath();
+            ctx.roundRect(drawX, drawY, drawSize, drawSize, radius);
+            ctx.fill();
+            
+            // --- RESET SHADOW AFTER FILLING ---
+            ctx.shadowBlur = 0; 
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+            // ----------------------------------
+
+            // Add inner bevel/highlight
             ctx.save();
             ctx.beginPath();
             ctx.roundRect(drawX, drawY, drawSize, drawSize, radius);
             ctx.clip();
-            ctx.fill();
-            ctx.restore();
-
+            
             const bevelGradient = ctx.createLinearGradient(drawX, drawY, drawX + drawSize, drawY + drawSize);
             bevelGradient.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
             bevelGradient.addColorStop(0.2, 'rgba(255, 255, 255, 0.05)');
             bevelGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
             
             ctx.fillStyle = bevelGradient;
-            ctx.beginPath();
-            ctx.roundRect(drawX, drawY, drawSize, drawSize, radius);
             ctx.fill();
+            ctx.restore();
+
             
             if (isSelected) {
                 const selectionGradient = ctx.createRadialGradient(
@@ -1227,6 +1268,7 @@
                 ctx.fill();
             }
 
+            // Draw outer border
             ctx.strokeStyle = adjustLuminosity(baseColor, isSelected ? 0.7 : 0.1); 
             ctx.lineWidth = 2;
             ctx.beginPath();
@@ -1248,21 +1290,8 @@
                 }
             }
             
-            ctx.strokeStyle = 'var(--color-grid-line)';
-            ctx.lineWidth = 1;
-            ctx.globalAlpha = 0.3;
-            for (let i = 0; i < GRID_SIZE; i++) {
-                ctx.beginPath();
-                ctx.moveTo(i * BLOCK_SIZE, 0);
-                ctx.lineTo(i * BLOCK_SIZE, CANVAS_SIZE);
-                ctx.stroke();
-                
-                ctx.beginPath();
-                ctx.moveTo(0, i * BLOCK_SIZE);
-                ctx.lineTo(CANVAS_SIZE, i * BLOCK_SIZE);
-                ctx.stroke();
-            }
-            ctx.globalAlpha = 1.0;
+            // The separation is now provided by the padding (which shows the canvas background) 
+            // and the block shadows in drawPolishedBlockCell.
         }
 
         function drawSelectionPath() {
