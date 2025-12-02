@@ -399,7 +399,7 @@
             </div>
 
             <!-- === Settings Content === -->
-            <div id="settingsContent" class="modal-screen hidden modal-background p-8 rounded-xl shadow-2xl max-w-sm w-full">
+            <div id="settingsContent" class="modal-screen hidden modal-background p-8 rounded-xl shadow-2xl w-11/12 max-w-lg">
                 <h2 class="text-3xl font-bold mb-6 text-center accent-title-text">Settings</h2>
                 
                 <div class="flex flex-col gap-6 text-lg mb-8">
@@ -451,7 +451,7 @@
             </div>
             
             <!-- === Help Content Modal === -->
-            <div id="helpContent" class="modal-screen hidden modal-background p-8 rounded-xl shadow-2xl max-w-sm w-full">
+            <div id="helpContent" class="modal-screen hidden modal-background p-8 rounded-xl shadow-2xl w-11/12 max-w-lg">
                 <h2 class="text-3xl font-bold mb-6 text-center accent-title-text">How to Play</h2>
                 <div class="text-sm space-y-4 opacity-80">
                     <p>The goal of Block Link is to clear colored blocks by linking them together.</p>
@@ -466,14 +466,14 @@
             </div>
 
             <!-- === Game Over Content === -->
-            <div id="gameOverContent" class="modal-screen hidden modal-background p-8 rounded-xl shadow-2xl max-w-sm w-full">
-                <h2 class="text-3xl font-bold accent-warning-text mb-3 text-center">Game Over</h2>
-                <p id="finalScoreText" class="text-lg mb-5 text-center opacity-80"></p>
-                <div id="newHighScoreMessage" class="text-2xl font-extrabold new-high-score-text mb-6 text-center" style="display:none;">
+            <div id="gameOverContent" class="modal-screen hidden modal-background p-8 rounded-xl shadow-2xl w-11/12 max-w-lg">
+                <h2 class="text-4xl font-extrabold accent-warning-text mb-4 text-center">GAME OVER</h2>
+                <p id="finalScoreText" class="text-xl mb-6 text-center opacity-80"></p>
+                <div id="newHighScoreMessage" class="text-3xl font-extrabold new-high-score-text mb-8 text-center" style="display:none;">
                     NEW HIGH SCORE!
                 </div>
                 <button id="gameOverPlayAgainBtn" class="btn w-full">Play Again</button>
-                <button id="gameOverMenuBtn" class="btn btn-menu mt-2 w-full">Home</button>
+                <button id="gameOverMenuBtn" class="btn btn-menu mt-4 w-full">Home</button>
             </div>
 
         </div>
@@ -483,7 +483,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, doc, setDoc, onSnapshot, runTransaction } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         import { setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // Set Firebase Log Level
@@ -686,40 +686,38 @@
                 return;
             }
 
-            if (score > highScore) {
-                console.log(`[Firestore Write] Attempting to save new high score: ${score} (Current best: ${highScore})`);
-                
-                const docRef = doc(db, HIGH_SCORE_PATH);
-                const newScoreData = {
-                    highScore: score, // Use current score for saving
-                    userId: userId, 
-                    timestamp: new Date()
-                };
+            if (score <= highScore) {
+                console.log(`Score ${score} is not higher than local high score ${highScore}. Skipping save.`);
+                return;
+            }
 
-                try {
-                    const maxRetries = 5;
-                    for (let i = 0; i < maxRetries; i++) {
-                        try {
-                            await setDoc(docRef, newScoreData, { merge: true });
-                            console.log("[Firestore Write] High score updated successfully:", score);
-                            
-                            // Proactively update local state for immediate feedback
-                            highScore = score; 
-                            highScoreDisplayInGame.textContent = highScore.toLocaleString();
-                            
-                            return; 
-                        } catch (e) {
-                            console.warn(`[Firestore Write] Retry attempt ${i + 1} failed:`, e.message);
-                            if (i === maxRetries - 1) throw e; 
-                            const delay = Math.pow(2, i) * 1000;
-                            await new Promise(resolve => setTimeout(resolve, delay));
-                        }
+            const docRef = doc(db, HIGH_SCORE_PATH);
+
+            try {
+                // Use a transaction to ensure atomic update: read the current score, compare, and write if higher.
+                await runTransaction(db, async (transaction) => {
+                    const docSnap = await transaction.get(docRef);
+                    let currentDbHighScore = 0;
+                    
+                    if (docSnap.exists()) {
+                        currentDbHighScore = docSnap.data().highScore || 0;
                     }
-                } catch (e) {
-                    console.error("[Firestore Write] Error updating high score after retries:", e);
-                }
-            } else {
-                console.log(`[Firestore Write] Score ${score} is not higher than current high score ${highScore}. Skipping save.`);
+
+                    if (score > currentDbHighScore) {
+                        const newScoreData = {
+                            highScore: score,
+                            userId: userId, 
+                            timestamp: new Date()
+                        };
+                        transaction.set(docRef, newScoreData, { merge: true });
+                        console.log(`[Firestore Transaction] Successfully wrote new high score: ${score}`);
+                        // The local 'highScore' will be updated automatically by the onSnapshot listener.
+                    } else {
+                        console.log(`[Firestore Transaction] Aborted: Local score ${score} was potentially beaten by DB score ${currentDbHighScore}.`);
+                    }
+                });
+            } catch (e) {
+                console.error("[Firestore Transaction] Error updating high score:", e);
             }
         }
         
@@ -846,14 +844,15 @@
                 screenEl.classList.remove('hidden'); 
             }
             
+            // For the main menu (full screen background effect)
             if (screenName === 'main') {
-                 modalContentContainer.classList.add('h-full', 'w-full');
-                 modalContentContainer.classList.remove('max-w-sm', 'w-auto');
                  gameModal.classList.remove('justify-center', 'items-center');
-            } else if (['settings', 'game_over', 'help'].includes(screenName)) {
-                 modalContentContainer.classList.remove('h-full', 'w-full');
-                 modalContentContainer.classList.add('max-w-sm', 'w-auto');
+                 // Ensure main menu fills the container
+                 mainMenuContent.classList.add('h-full', 'w-full');
+            } else {
                  gameModal.classList.add('justify-center', 'items-center');
+                 // Ensure popups don't fill the container
+                 mainMenuContent.classList.remove('h-full', 'w-full');
             }
         }
 
@@ -955,11 +954,13 @@
         function endGame() {
              isGameOver = true;
              
+             // Check against the current, locally stored high score (which is updated by Firestore listener)
              const isNewHighScore = score > highScore;
-             console.log(`[Game Over] Final Score: ${score}, Current DB High Score: ${highScore}. New high score? ${isNewHighScore}`);
+             console.log(`[Game Over] Final Score: ${score}, Local High Score: ${highScore}. New high score? ${isNewHighScore}`);
              
              if (isNewHighScore) {
-                 updateHighScore(); // Save the new score to Firebase
+                 // Trigger the transaction to save the new high score
+                 updateHighScore(); 
                  newHighScoreMessage.style.display = 'block';
                  finalScoreText.textContent = `You cleared ${totalCleared} blocks for a score of ${score.toLocaleString()}!`;
              } else {
