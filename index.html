@@ -21,7 +21,6 @@
             --color-link: #ff79c6;
             --color-success: #50fa7b;
             --color-warning: #F8E71C;
-            /* Removed canvas border color */
             --color-canvas-bg: #282a36;
             --color-grid-line: #383a59;
             --color-button-primary: #bd93f9;
@@ -34,101 +33,18 @@
             --color-button-menu-shadow: #1f2937; /* Gray-800 */
         }
 
-        /* --- Light Mode Theme --- */
-        .theme-light {
-            --bg-primary: #f0f0f5;
-            --bg-secondary: #e0e0e5;
-            --ui-background: #ffffff;
-            --ui-panel: #f0f0f0;
-            --color-main: #333;
-            --color-accent: #9013FE;
-            --color-link: #D0021B;
-            --color-success: #1E824C;
-            --color-warning: #C70039;
-            /* Removed canvas border color */
-            --color-canvas-bg: #f8f8f8;
-            --color-grid-line: #ccc;
-            --color-button-primary: #9013FE;
-            --color-button-primary-shadow: #5a0a9e;
-            --color-button-primary-hover: #a948fe;
-            --color-button-secondary: #D0021B;
-            --color-button-secondary-shadow: #9e0214;
-            --color-button-secondary-hover: #ff3349;
-            --color-button-menu-bg: #9ca3af;
-            --color-button-menu-shadow: #6b7280;
-        }
-
-        /* --- Forest Theme --- */
-        .theme-forest {
-            --bg-primary: #1a3424;
-            --bg-secondary: #0a1c12;
-            --ui-background: #2d4a34;
-            --ui-panel: #3a6042;
-            --color-main: #e0f0e0;
-            --color-accent: #7cb448;
-            --color-link: #F5A623;
-            --color-success: #b8cc9a;
-            --color-warning: #EEDD4C;
-            /* Removed canvas border color */
-            --color-canvas-bg: #2d4a34;
-            --color-grid-line: #1e3a24;
-            --color-button-primary: #7cb448;
-            --color-button-primary-shadow: #4a7824;
-            --color-button-primary-hover: #9cd468;
-            --color-button-secondary: #F5A623;
-            --color-button-secondary-shadow: #b3730e;
-            --color-button-secondary-hover: #ffd378;
-            --color-button-menu-bg: #5a7d61; 
-            --color-button-menu-shadow: #3f5e43; 
-        }
-
-        /* --- Upside Down Theme (Stranger Things) --- */
-        .theme-upside-down {
-            --bg-primary: #120a0a;
-            --bg-secondary: #000000;
-            --ui-background: #1a0f0f;
-            --ui-panel: #2e1d1d;
-            --color-main: #e0e0e0;
-            --color-accent: #e50914; /* Netflix Red */
-            --color-link: #ff4545;
-            --color-success: #ff0000;
-            --color-warning: #ffe000;
-            /* Removed canvas border color */
-            --color-canvas-bg: #1a0f0f;
-            --color-grid-line: #331f1f;
-            --color-button-primary: #e50914;
-            --color-button-primary-shadow: #96060c;
-            --color-button-primary-hover: #ff333d;
-            --color-button-secondary: #ff4545;
-            --color-button-secondary-shadow: #b22d2d;
-            --color-button-secondary-hover: #ff6666;
-            --color-button-menu-bg: #4d2626; 
-            --color-button-menu-shadow: #331a1a;
-        }
-
-        /* --- Ocean Theme --- */
-        .theme-ocean {
-            --bg-primary: #3a506b;
-            --bg-secondary: #0e1e30;
-            --ui-background: #6a8ba7;
-            --ui-panel: #839aa8;
-            --color-main: #f0f8ff;
-            --color-accent: #00bcd4; /* Cyan */
-            --color-link: #ffcd3c; /* Gold/Sand */
-            --color-success: #4caf50;
-            --color-warning: #f44336;
-            /* Removed canvas border color */
-            --color-canvas-bg: #6a8ba7;
-            --color-grid-line: #4e6c87;
-            --color-button-primary: #00bcd4;
-            --color-button-primary-shadow: #008ba3;
-            --color-button-primary-hover: #33e5ff;
-            --color-button-secondary: #ffcd3c;
-            --color-button-secondary-shadow: #c79c16;
-            --color-button-secondary-hover: #ffeb8d;
-            --color-button-menu-bg: #4682b4; /* Steel Blue */
-            --color-button-menu-shadow: #2c5374; 
-        }
+        /* Theme definitions */
+        .theme-light { --bg-primary: #f0f0f5; --bg-secondary: #e0e0e5; --ui-background: #ffffff; --ui-panel: #f0f0f0; --color-main: #333; --color-accent: #9013FE; --color-link: #D0021B; --color-success: #1E824C; --color-warning: #C70039; --color-canvas-bg: #f8f8f8; --color-grid-line: #ccc; --color-button-primary: #9013FE; --color-button-primary-shadow: #5a0a9e; --color-button-primary-hover: #a948fe; --color-button-secondary: #D0021B; --color-button-secondary-shadow: #9e0214; --color-button-secondary-hover: #ff3349; --color-button-menu-bg: #9ca3af; --color-button-menu-shadow: #6b7280; }
+        .theme-forest { --bg-primary: #1a3424; --bg-secondary: #0a1c12; --ui-background: #2d4a34; --ui-panel: #3a6042; --color-main: #e0f0e0; --color-accent: #7cb448; --color-link: #F5A623; --color-success: #b8cc9a; --color-warning: #EEDD4C; --color-canvas-bg: #2d4a34; --color-grid-line: #1e3a24; --color-button-primary: #7cb448; --color-button-primary-shadow: #4a7824; --color-button-primary-hover: #9cd468; --color-button-secondary: #F5A623; --color-button-secondary-shadow: #b3730e; --color-button-secondary-hover: #ffd378; --color-button-menu-bg: #5a7d61; --color-button-menu-shadow: #3f5e43; }
+        .theme-upside-down { --bg-primary: #120a0a; --bg-secondary: #000000; --ui-background: #1a0f0f; --ui-panel: #2e1d1d; --color-main: #e0e0e0; --color-accent: #e50914; --color-link: #ff4545; --color-success: #ff0000; --color-warning: #ffe000; --color-canvas-bg: #1a0f0f; --color-grid-line: #331f1f; --color-button-primary: #e50914; --color-button-primary-shadow: #96060c; --color-button-primary-hover: #ff333d; --color-button-secondary: #ff4545; --color-button-secondary-shadow: #b22d2d; --color-button-secondary-hover: #ff6666; --color-button-menu-bg: #4d2626; --color-button-menu-shadow: #331a1a; }
+        .theme-ocean { --bg-primary: #3a506b; --bg-secondary: #0e1e30; --ui-background: #6a8ba7; --ui-panel: #839aa8; --color-main: #f0f8ff; --color-accent: #00bcd4; --color-link: #ffcd3c; --color-success: #4caf50; --color-warning: #f44336; --color-canvas-bg: #6a8ba7; --color-grid-line: #4e6c87; --color-button-primary: #00bcd4; --color-button-primary-shadow: #008ba3; --color-button-primary-hover: #33e5ff; --color-button-secondary: #ffcd3c; --color-button-secondary-shadow: #c79c16; --color-button-secondary-hover: #ffeb8d; --color-button-menu-bg: #4682b4; --color-button-menu-shadow: #2c5374; }
+        .toggle-switch { width: 50px; height: 25px; background: #ccc; border-radius: 25px; position: relative; cursor: pointer; transition: background-color 0.3s; }
+        .toggle-switch.active { background: var(--color-success); }
+        .toggle-switch:before { content: ''; position: absolute; width: 21px; height: 21px; border-radius: 50%; background: white; top: 2px; left: 2px; transition: transform 0.3s; }
+        .toggle-switch.active:before { transform: translateX(25px); }
+        .active-theme { font-weight: 900 !important; border: 2px solid var(--color-warning) !important; transform: translateY(-2px) !important; box-shadow: 0 6px var(--color-button-menu-shadow) !important; }
+        #comboText { position: absolute; font-size: 2rem; font-weight: bold; color: var(--color-warning); text-shadow: 0 0 10px var(--color-warning); animation: flyup 1.5s ease-out forwards; pointer-events: none; z-index: 50; }
+        @keyframes flyup { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-100px) scale(0.5); opacity: 0; } }
 
         body {
             font-family: 'Orbitron', sans-serif;
@@ -139,7 +55,7 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            padding: 20px;
+            padding: 10px; 
             transition: background 0.5s, color 0.5s;
         }
 
@@ -147,175 +63,100 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            max-width: fit-content;
+            max-width: 480px; 
             width: 100%;
             background: var(--ui-background);
-            padding: 20px;
+            padding: 15px; 
             border-radius: 20px;
             box-shadow: 0 0 40px rgba(71, 107, 255, 0.4);
         }
+        
+        #gameCanvas {
+            width: 100%; 
+            height: auto; 
+            aspect-ratio: 1 / 1; 
+            box-shadow: 0 0 20px rgba(248, 248, 242, 0.2);
+            border-radius: 10px;
+            background-color: var(--color-canvas-bg);
+            touch-action: none;
+            transition: background 0.5s;
+            border: none;
+        }
 
         .header h1 {
-            font-size: 2.5rem;
+            font-size: 2rem; 
             color: var(--color-accent);
             text-shadow: 0 0 10px var(--color-accent, 0.6);
         }
 
-        /* Modified Info Bar Styling: Removed background/padding/box-shadow */
         #gameInfoBar {
-            color: var(--color-main);
             width: 100%;
-            max-width: 480px;
-            padding: 10px 0; /* Minimal padding */
+            max-width: 100%; 
+            padding: 10px 0;
             box-sizing: border-box;
-            transition: color 0.5s;
         }
-        #gameInfoBar button {
-            /* Kept button styling for visibility/interactivity */
-            background: var(--color-button-secondary);
-            box-shadow: 0 3px var(--color-button-secondary-shadow);
-            color: var(--ui-background);
-        }
-        #gameInfoBar button:hover {
-            background: var(--color-button-secondary-hover);
-        }
-
-        /* Removed border and associated box-shadow for a simpler look */
-        #gameCanvas {
-            box-shadow: 0 0 20px rgba(248, 248, 242, 0.2);
-            border-radius: 10px; /* Kept subtle corner rounding */
-            background-color: var(--color-canvas-bg);
-            touch-action: none;
-            transition: background 0.5s;
-            border: none; /* Explicitly removed border */
-        }
-
+        
         .btn {
-            background: var(--color-button-primary);
-            color: var(--ui-background);
             padding: 10px 15px;
             border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
-            box-shadow: 0 4px var(--color-button-primary-shadow);
-            border: none;
-        }
-        .btn-menu {
-            background: var(--color-button-menu-bg);
-            box-shadow: 0 4px var(--color-button-menu-shadow);
+            background-color: var(--color-button-primary);
             color: var(--color-main);
-        }
-        .btn-menu:hover {
-            background: var(--color-button-menu-bg, 0.8);
-            box-shadow: 0 4px var(--color-button-menu-shadow);
+            font-weight: 700;
+            box-shadow: 0 4px var(--color-button-primary-shadow);
+            transition: all 0.15s ease-out;
         }
 
         .btn:hover {
-            background: var(--color-button-primary-hover);
+            background-color: var(--color-button-primary-hover);
         }
+
         .btn:active {
             transform: translateY(2px);
             box-shadow: 0 2px var(--color-button-primary-shadow);
         }
         
-        /* Modal and Settings Styling */
-        #gameModal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.3s;
+        .btn-menu {
+            background-color: var(--color-button-menu-bg);
+            box-shadow: 0 4px var(--color-button-menu-shadow);
+        }
+        
+        .btn-menu:hover {
+            background-color: var(--color-button-menu-bg);
+            filter: brightness(1.2);
+        }
+        .btn-menu:active {
+             transform: translateY(2px);
+             box-shadow: 0 2px var(--color-button-menu-shadow);
         }
         
         .modal-background {
-             background: var(--ui-panel);
-             transition: background 0.5s;
+            background-color: var(--ui-panel);
+            border: 2px solid var(--color-accent);
         }
 
-        #modalContentContainer h2 {
-            color: var(--color-link);
-            text-shadow: 0 0 5px rgba(255, 121, 198, 0.4);
-        }
-        
-        .toggle-switch {
-            width: 50px;
-            height: 25px;
-            background: #ccc;
-            border-radius: 25px;
-            position: relative;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .toggle-switch.active {
-            background: var(--color-success);
-        }
-        .toggle-switch:before {
-            content: '';
-            position: absolute;
-            width: 21px;
-            height: 21px;
-            border-radius: 50%;
-            background: white;
-            top: 2px;
-            left: 2px;
-            transition: transform 0.3s;
-        }
-        .toggle-switch.active:before {
-            transform: translateX(25px);
-        }
-        
-        /* Theme button active style */
-        .active-theme {
-            font-weight: 900 !important;
-            border: 2px solid var(--color-warning) !important;
-            transform: translateY(-2px) !important;
-            box-shadow: 0 6px var(--color-button-menu-shadow) !important;
-        }
-
-        #comboText {
-            position: absolute;
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--color-warning);
-            text-shadow: 0 0 10px var(--color-warning);
-            animation: flyup 1.5s ease-out forwards;
-            pointer-events: none;
-            z-index: 50;
-        }
-
-        @keyframes flyup {
-            0% { transform: translateY(0) scale(1); opacity: 1; }
-            100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
-        }
-        
     </style>
 </head>
 <body class="theme-dark">
 
-    <div class="game-container">
+    <div id="gameContainer" class="game-container">
         <div class="header w-full">
             <h1>BLOCK LINK</h1>
-            <!-- Removed the instructional text as requested -->
         </div>
         
         <div class="game-area w-full flex-col items-center">
             
-            <!-- Simplified In-Game Info Bar -->
+            <!-- In-Game Info Bar -->
             <div id="gameInfoBar" class="flex justify-between items-center" style="display: none;">
                 <span class="text-xl font-bold">Score: <span id="currentScore">0</span></span>
-                <!-- Adjusted Home button style slightly for better contrast without a background box -->
-                <button id="homeBtn" class="btn text-sm py-1 px-3">Home</button>
+                <!-- Gear Icon for Settings (Replaced Home Button) -->
+                <button id="settingsBtn" class="btn btn-menu text-sm py-1 px-3">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings">
+                        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 0-.74 2.8v.9a2 2 0 0 0-.25 1.11L2 12l.14.77a2 2 0 0 0 .25 1.11v.9a2 2 0 0 0 .74 2.8l.43.25a2 2 0 0 1 1 1.73v.18a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 0 .74-2.8v-.9a2 2 0 0 0 .25-1.11L22 12l-.14-.77a2 2 0 0 0-.25-1.11v-.9a2 2 0 0 0-.74-2.8l-.43-.25a2 2 0 0 1-1-1.73v-.18a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>
+                    </svg>
+                </button>
             </div>
             
-            <!-- Main Canvas (Starts hidden) -->
+            <!-- Main Canvas -->
             <canvas id="gameCanvas" style="display: none;"></canvas>
             
         </div>
@@ -327,7 +168,7 @@
             
             <!-- === Main Menu Content (Home Screen) === -->
             <div id="mainMenuContent" class="modal-screen">
-                <h2 class="text-3xl font-bold mb-8 text-center">Home</h2>
+                <h2 class="text-3xl font-bold mb-8 text-center">Block Link</h2>
                 <div class="flex flex-col gap-4">
                     <button id="mainMenuPlayBtn" class="btn text-2xl py-4">Classic Mode</button>
                     <button id="mainMenuSettingsBtn" class="btn btn-menu text-xl py-4">Settings</button>
@@ -355,6 +196,9 @@
                         <span>Vibration Feedback:</span>
                         <div id="vibrationToggle" class="toggle-switch"></div>
                     </div>
+                    
+                    <!-- Back Home Button (for the initial request) -->
+                    <button id="settingsBackHomeBtn" class="btn btn-menu w-full mt-2">Back to Home</button>
 
                     <!-- Theme Selection -->
                     <div class="flex flex-col">
@@ -403,7 +247,7 @@
         </div>
     </div>
 
-    <!-- Firebase Imports -->
+    <!-- Firebase Imports and Game Logic -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -415,8 +259,9 @@
 
         // --- GLOBAL VARIABLES & CONSTANTS ---
         const GRID_SIZE = 8;
-        const BLOCK_SIZE = 60; 
-        const CANVAS_SIZE = GRID_SIZE * BLOCK_SIZE;
+        let BLOCK_SIZE = 0; 
+        let CANVAS_SIZE = 0; 
+        
         const COLOR_MAP = [
             '#4A90E2', // Blue
             '#50E3C2', // Teal
@@ -441,17 +286,15 @@
         let settings = {
             theme: 'dark',
             vibration: false,
-            soundEnabled: true // New setting for sound control
+            soundEnabled: true 
         };
 
         // Canvas & Contexts
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
         
-        canvas.width = CANVAS_SIZE;
-        canvas.height = CANVAS_SIZE;
-
         // DOM Elements
+        const gameContainer = document.getElementById('gameContainer');
         const currentScoreDisplay = document.getElementById('currentScore');
         const highScoreDisplay = document.getElementById('highScore');
         const gameCanvas = document.getElementById('gameCanvas');
@@ -461,7 +304,7 @@
         const gameModal = document.getElementById('gameModal');
         const finalScoreText = document.getElementById('finalScoreText');
         const vibrationToggle = document.getElementById('vibrationToggle');
-        const soundToggle = document.getElementById('soundToggle'); // New DOM element reference
+        const soundToggle = document.getElementById('soundToggle');
         const body = document.body;
 
         const modalScreens = {
@@ -479,45 +322,29 @@
         const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
         const HIGH_SCORE_PATH = `/artifacts/${appId}/public/data/highscores/global`;
 
-        // --- TONE.JS AUDIO SETUP ---
+        // Tone.js Audio Setup
         let selectSynth, clearSynth;
 
         function setupAudio() {
-            // Sound for selection/linking (a short, soft pluck)
-            selectSynth = new Tone.PluckSynth({
-                attackNoise: 0.5, // Reduced for softer, less sharp attack
-                dampening: 5000,  // Increased for faster, softer decay
-                resonance: 0.7
-            }).toDestination();
-
-            // Sound for clearing (a quick arpeggio/chime)
+            selectSynth = new Tone.PluckSynth({ attackNoise: 0.5, dampening: 5000, resonance: 0.7 }).toDestination();
             clearSynth = new Tone.PolySynth(Tone.Synth, {
                 oscillator: { type: "sine" },
-                envelope: {
-                    attack: 0.005,
-                    decay: 0.2,
-                    sustain: 0.05,
-                    release: 0.5
-                }
+                envelope: { attack: 0.005, decay: 0.2, sustain: 0.05, release: 0.5 }
             }).toDestination();
         }
 
         function playSelectSound() {
-            if (!settings.soundEnabled) return; // Check if sound is enabled
-            if (Tone.context.state === 'running') {
-                // Trigger note with reduced velocity (0.6) for a much softer volume
-                selectSynth.triggerAttackRelease("C5", "16n", Tone.now(), 0.6); 
-            }
+            if (!settings.soundEnabled) return; 
+            if (Tone.context.state === 'running') { selectSynth.triggerAttackRelease("C5", "16n", Tone.now(), 0.6); }
         }
 
         function playClearSound(count) {
-            if (!settings.soundEnabled) return; // Check if sound is enabled
+            if (!settings.soundEnabled) return;
             if (Tone.context.state !== 'running') return;
             
-            // Define notes for a rising arpeggio, scaling slightly with combo
             const root = count >= 5 ? "C4" : (count >= 4 ? "D4" : "E4");
             const pattern = [root, Tone.Midi(Tone.Frequency(root).toMidi() + 4).toNote(), Tone.Midi(Tone.Frequency(root).toMidi() + 7).toNote(), Tone.Midi(Tone.Frequency(root).toMidi() + 12).toNote()];
-            const notes = pattern.slice(0, Math.min(count - 1, pattern.length)); // Base 3 clear gets 2 notes
+            const notes = pattern.slice(0, Math.min(count - 1, pattern.length));
 
             let time = Tone.now();
             notes.forEach((note, index) => {
@@ -525,9 +352,7 @@
             });
         }
         
-        // Initialize audio synths
         setupAudio();
-
 
         async function initializeFirebase() {
             try {
@@ -545,12 +370,8 @@
                     if (user) {
                         userId = user.uid;
                         listenForHighScores();
-                        
-                        // Set canvas sizes and load local settings
-                        canvas.style.maxWidth = `${CANVAS_SIZE}px`;
-                        gameInfoBar.style.maxWidth = `${CANVAS_SIZE}px`;
                         loadSettings();
-                        showScreen('main'); // Start on the Home Screen
+                        showScreen('main'); 
                     } else {
                         highScoreDisplay.textContent = 'N/A';
                         loadSettings();
@@ -566,8 +387,7 @@
             }
         }
 
-        // --- FIREBASE DATA FUNCTIONS (PUBLIC) ---
-
+        // --- FIREBASE DATA FUNCTIONS ---
         function listenForHighScores() {
             if (!db) return;
             const docRef = doc(db, HIGH_SCORE_PATH);
@@ -606,41 +426,27 @@
         }
         
         // --- SETTINGS MANAGEMENT ---
-
         function saveSettings() {
-            try {
-                localStorage.setItem('blockLinkSettings', JSON.stringify(settings));
-            } catch (e) {
-                console.error("Could not save settings to localStorage:", e);
-            }
+            try { localStorage.setItem('blockLinkSettings', JSON.stringify(settings)); } catch (e) { console.error("Could not save settings to localStorage:", e); }
         }
 
         function loadSettings() {
             try {
                 const storedSettings = localStorage.getItem('blockLinkSettings');
-                if (storedSettings) {
-                    settings = JSON.parse(storedSettings);
-                }
-            } catch (e) {
-                console.error("Could not load settings from localStorage:", e);
-            }
+                if (storedSettings) { settings = JSON.parse(storedSettings); }
+            } catch (e) { console.error("Could not load settings from localStorage:", e); }
 
-            // Ensure soundEnabled is set if it was missing in old config
-            if (typeof settings.soundEnabled === 'undefined') {
-                settings.soundEnabled = true;
-            }
+            if (typeof settings.soundEnabled === 'undefined') { settings.soundEnabled = true; }
+            if (typeof settings.vibration === 'undefined') { settings.vibration = false; }
+            if (typeof settings.theme === 'undefined') { settings.theme = 'dark'; }
 
             applyTheme(settings.theme);
             updateVibrationToggleUI(settings.vibration);
-            updateSoundToggleUI(settings.soundEnabled); // Initialize sound toggle UI
+            updateSoundToggleUI(settings.soundEnabled); 
         }
         
         function updateSoundToggleUI(isActive) {
-            if (isActive) {
-                soundToggle.classList.add('active');
-            } else {
-                soundToggle.classList.remove('active');
-            }
+            if (isActive) { soundToggle.classList.add('active'); } else { soundToggle.classList.remove('active'); }
         }
 
         function toggleSound() {
@@ -655,7 +461,6 @@
             settings.theme = themeName;
             saveSettings();
             
-            // Highlight the active theme button
             document.querySelectorAll('#settingsContent .btn[data-theme]').forEach(btn => {
                 btn.classList.remove('active-theme');
                 if (btn.dataset.theme === themeName) {
@@ -665,20 +470,14 @@
         }
         
         function updateVibrationToggleUI(isActive) {
-            if (isActive) {
-                vibrationToggle.classList.add('active');
-            } else {
-                vibrationToggle.classList.remove('active');
-            }
+            if (isActive) { vibrationToggle.classList.add('active'); } else { vibrationToggle.classList.remove('active'); }
         }
 
         function toggleVibration() {
             settings.vibration = !settings.vibration;
             updateVibrationToggleUI(settings.vibration);
             saveSettings();
-            if (settings.vibration) {
-                triggerVibration(20);
-            }
+            if (settings.vibration) { triggerVibration(20); }
         }
 
         function triggerVibration(duration = 100) {
@@ -688,43 +487,63 @@
         }
 
         // --- UI & GAME FLOW CONTROL ---
-
-        /**
-         * Switches the current view between the game and the various modal screens.
-         * @param {string} screenName 'main', 'settings', 'game_over', 'help', or 'game'.
-         */
         function showScreen(screenName) {
-            // 1. Hide all modal screens
+            // Hide all screens
             Object.values(modalScreens).forEach(el => el.classList.add('hidden'));
 
             if (screenName !== 'game') {
-                // Showing a menu/game over: Show modal, hide game elements
+                // Show modal overlay
                 gameModal.style.visibility = 'visible';
                 gameModal.style.opacity = '0';
                 setTimeout(() => gameModal.style.opacity = '1', 10);
                 gameCanvas.style.display = 'none';
                 gameInfoBar.style.display = 'none';
                 
+                // Show requested screen content
                 const screenEl = modalScreens[screenName];
-                if (screenEl) {
-                    screenEl.classList.remove('hidden');
-                }
+                if (screenEl) { screenEl.classList.remove('hidden'); }
             } else {
-                // Showing the game: Hide modal, show game elements
+                // Hide modal and start game
                 gameModal.style.opacity = '0';
-                setTimeout(() => {
-                    gameModal.style.visibility = 'hidden';
-                }, 300);
+                setTimeout(() => { gameModal.style.visibility = 'hidden'; }, 300);
                 gameCanvas.style.display = 'block';
                 gameInfoBar.style.display = 'flex';
-                initGame(); // Start the core game logic
+                // Initialize/reset game on play
+                initGame(); 
             }
         }
 
 
+        // --- DYNAMIC DIMENSION CALCULATION ---
+        function calculateDimensions() {
+            // Get the current width of the game container, excluding padding
+            const containerWidth = gameContainer.clientWidth - 30; 
+            
+            // CANVAS_SIZE will be the largest square that fits, using the container width
+            const size = containerWidth; 
+            
+            BLOCK_SIZE = Math.floor(size / GRID_SIZE);
+            CANVAS_SIZE = BLOCK_SIZE * GRID_SIZE;
+            
+            // Set canvas element attributes for drawing resolution
+            canvas.width = CANVAS_SIZE;
+            canvas.height = CANVAS_SIZE;
+            
+            // Set max-width of info bar to match the canvas
+            gameInfoBar.style.maxWidth = `${CANVAS_SIZE}px`;
+            
+            // When Tone.js is ready and game is active, start audio context
+            if (Tone.context.state !== 'running') {
+                 Tone.start().then(() => { console.log("Audio context started."); });
+            }
+        }
+
         // --- GAME LOGIC FUNCTIONS ---
 
         function initGame() {
+            // 1. Calculate the dynamic dimensions based on viewport/container size
+            calculateDimensions(); 
+            
             score = 0;
             totalCleared = 0;
             isGameOver = false;
@@ -736,69 +555,44 @@
                 Array(GRID_SIZE).fill(0).map(() => Math.floor(Math.random() * COLOR_MAP.length) + 1)
             );
             
+            // Ensure the board is solvable initially (optional, but good practice)
+            while (!checkPossibleMoves()) {
+                 board = Array(GRID_SIZE).fill(0).map(() => 
+                    Array(GRID_SIZE).fill(0).map(() => Math.floor(Math.random() * COLOR_MAP.length) + 1)
+                );
+            }
+
             updateScoreDisplay();
             drawGame();
         }
 
         function endGame() {
-            isGameOver = true;
-            finalScoreText.textContent = `You achieved a final score of ${score.toLocaleString()}.`;
-            updateHighScore();
-            triggerVibration(500); // Long vibration on game over
-            showScreen('game_over');
+             isGameOver = true;
+             updateHighScore();
+             finalScoreText.textContent = `Your Score: ${score.toLocaleString()} | High Score: ${highScore.toLocaleString()}`;
+             showScreen('game_over');
         }
-
-        /**
-         * Checks the entire board for any possible valid move (path of MIN_PATH_LENGTH).
-         * Uses a Depth First Search (DFS) helper.
-         */
+        
         function checkPossibleMoves() {
-            
-            function canFindPath(x, y, color, currentLength, visited) {
-                if (currentLength >= MIN_PATH_LENGTH) return true;
-                
-                visited[y][x] = true; 
-                const neighbors = [{ dx: 0, dy: -1 }, { dx: 0, dy: 1 }, { dx: -1, dy: 0 }, { dx: 1, dy: 0 }];
-
-                for (const { dx, dy } of neighbors) {
-                    const nextX = x + dx;
-                    const nextY = y + dy;
-
-                    if (nextX >= 0 && nextX < GRID_SIZE && nextY >= 0 && nextY < GRID_SIZE &&
-                        board[nextY][nextX] === color && !visited[nextY][nextX]) {
-                        
-                        if (canFindPath(nextX, nextY, color, currentLength + 1, visited)) {
-                            return true;
-                        }
-                    }
-                }
-                
-                visited[y][x] = false; 
-                return false;
-            }
-
             for (let y = 0; y < GRID_SIZE; y++) {
                 for (let x = 0; x < GRID_SIZE; x++) {
                     const color = board[y][x];
-                    if (color === 0) continue; 
+                    if (color === 0) continue;
 
-                    let visited = Array(GRID_SIZE).fill(0).map(() => Array(GRID_SIZE).fill(false));
-                    
-                    if (canFindPath(x, y, color, 1, visited)) {
-                        return true; 
-                    }
+                    // Check horizontal links (need 3 total, so check up to x+2)
+                    if (x + 2 < GRID_SIZE && board[y][x + 1] === color && board[y][x + 2] === color) { return true; }
+
+                    // Check vertical links (need 3 total, so check up to y+2)
+                    if (y + 2 < GRID_SIZE && board[y + 1][x] === color && board[y + 2][x] === color) { return true; }
                 }
             }
-            return false; 
+            return false;
         }
 
         function updateScoreDisplay() {
-            currentScoreDisplay.textContent = score.toLocaleString();
+             currentScoreDisplay.textContent = score.toLocaleString();
         }
 
-        /**
-         * Converts mouse/touch position (relative to canvas) to grid coordinates.
-         */
         function getGridCoordinates(canvasX, canvasY) {
             const gridX = Math.floor(canvasX / BLOCK_SIZE);
             const gridY = Math.floor(canvasY / BLOCK_SIZE);
@@ -809,19 +603,37 @@
             return null;
         }
         
-        /**
-         * Checks if the new cell (x2, y2) is adjacent ONLY horizontally or vertically
-         * to the last cell in the path (x1, y1).
-         */
         function isAdjacent(x1, y1, x2, y2) {
-            const dx = Math.abs(x1 - x2);
-            const dy = Math.abs(y1 - y2);
-            return dx + dy === 1;
+            return (Math.abs(x1 - x2) + Math.abs(y1 - y2) === 1); // Manhattan distance of 1
+        }
+        
+        // --- Input Handler (BUG FIX HERE) ---
+        function getCanvasCoordinates(e) {
+            const rect = canvas.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            
+            // Calculate raw coordinates relative to the visible element
+            const rawX = clientX - rect.left;
+            const rawY = clientY - rect.top;
+
+            // BUG FIX: Scale the raw coordinates based on the difference between 
+            // the CSS display size (rect.width/height) and the internal drawing size (CANVAS_SIZE)
+            const scaleX = CANVAS_SIZE / rect.width;
+            const scaleY = CANVAS_SIZE / rect.height;
+
+            return {
+                x: rawX * scaleX,
+                y: rawY * scaleY
+            };
         }
 
         function onLinkStart(e) {
             if (isGameOver || gameCanvas.style.display === 'none') return;
             e.preventDefault();
+
+            // IMPORTANT: Recalculate dimensions on start, which also handles audio context
+            calculateDimensions(); 
 
             const pos = getCanvasCoordinates(e); 
             const coords = getGridCoordinates(pos.x, pos.y);
@@ -837,7 +649,7 @@
             }
         }
         
-        function onLinkMove(e) {
+        function onLinkMove(e) { 
             if (!isLinking || isGameOver) return;
             e.preventDefault();
 
@@ -849,25 +661,19 @@
                 const colorIndex = board[y][x];
                 const lastCell = selectedPath[selectedPath.length - 1];
 
-                if (colorIndex !== selectedColorIndex) {
-                    return;
-                }
+                if (colorIndex !== selectedColorIndex) { return; }
+                if (!isAdjacent(lastCell.x, lastCell.y, x, y)) { return; }
 
-                if (!isAdjacent(lastCell.x, lastCell.y, x, y)) {
-                    return;
-                }
-
-                const newCell = { x, y };
                 const existingIndex = selectedPath.findIndex(p => p.x === x && p.y === y);
 
                 if (existingIndex !== -1) {
                     if (existingIndex === selectedPath.length - 2) {
                         selectedPath.pop();
-                        playSelectSound(); // Sound on backtracking
+                        playSelectSound();
                     }
                 } else {
-                    selectedPath.push(newCell);
-                    playSelectSound(); // Sound on adding new cell
+                    selectedPath.push({ x, y });
+                    playSelectSound();
                 }
 
                 drawGame();
@@ -894,92 +700,95 @@
             totalCleared += clearedCount;
             updateScoreDisplay();
             showComboText(clearedCount);
-            triggerVibration(50); // Short vibration on clear
-            playClearSound(clearedCount); // Play clear sound
+            triggerVibration(50);
+            playClearSound(clearedCount);
 
-            selectedPath.forEach(({ x, y }) => {
-                board[y][x] = 0;
-            });
+            selectedPath.forEach(({ x, y }) => { board[y][x] = 0; });
             selectedPath = [];
             drawGame();
             
+            // Pause to show the clearance effect
             await new Promise(resolve => setTimeout(resolve, 150)); 
 
             applyGravity();
             drawGame();
+            
+            // Refill new blocks
+            refillNewBlocks();
+            drawGame();
 
-            if (!checkPossibleMoves()) {
-                endGame();
-            }
+            if (!checkPossibleMoves()) { endGame(); }
         }
-
 
         function applyGravity() {
             for (let x = 0; x < GRID_SIZE; x++) {
-                let emptyCells = []; 
-                
+                let emptySlots = 0;
                 for (let y = GRID_SIZE - 1; y >= 0; y--) {
                     if (board[y][x] === 0) {
-                        emptyCells.push(y);
-                    } else if (emptyCells.length > 0) {
-                        const newY = emptyCells.shift();
-                        board[newY][x] = board[y][x];
+                        emptySlots++;
+                    } else if (emptySlots > 0) {
+                        // Move block down
+                        board[y + emptySlots][x] = board[y][x];
                         board[y][x] = 0;
-                        emptyCells.push(y); 
                     }
                 }
-
-                emptyCells.forEach(y => {
-                    board[y][x] = Math.floor(Math.random() * COLOR_MAP.length) + 1;
-                });
             }
         }
 
+        function refillNewBlocks() {
+            for (let x = 0; x < GRID_SIZE; x++) {
+                for (let y = 0; y < GRID_SIZE; y++) {
+                    if (board[y][x] === 0) {
+                        // Generate a random color index (1 to COLOR_MAP.length)
+                        board[y][x] = Math.floor(Math.random() * COLOR_MAP.length) + 1; 
+                    }
+                }
+            }
+        }
+        
         function showComboText(count) {
-            const text = `${count} CLEARED!`;
-            const comboEl = document.createElement('div');
-            comboEl.id = 'comboText';
-            comboEl.textContent = text;
-            
-            const rect = canvas.getBoundingClientRect();
-            
-            comboEl.style.left = `${rect.left + rect.width / 2}px`;
-            comboEl.style.top = `${rect.top + rect.height / 2}px`;
-            
-            document.body.appendChild(comboEl);
+             const comboText = document.createElement('div');
+             comboText.id = 'comboText';
+             comboText.textContent = `${count}x Combo!`;
+             
+             // Get canvas position relative to viewport
+             const rect = canvas.getBoundingClientRect();
+             comboText.style.left = `${rect.left + rect.width / 2}px`;
+             comboText.style.top = `${rect.top + rect.height / 2}px`;
+             comboText.style.transform = `translate(-50%, -50%)`;
+             
+             document.body.appendChild(comboText);
 
-            setTimeout(() => {
-                comboEl.remove();
-            }, 1500);
+             setTimeout(() => {
+                 comboText.remove();
+             }, 1500); 
         }
 
         // --- RENDERING FUNCTIONS ---
-
         function drawBlockCell(ctx, x, y, colorIndex, isSelected = false) {
-            if (colorIndex === 0) return;
+            if (colorIndex === 0 || BLOCK_SIZE === 0) return;
             const color = COLOR_MAP[colorIndex - 1];
             
             ctx.globalAlpha = 1.0;
             ctx.fillStyle = color;
-            
             ctx.strokeStyle = 'transparent';
             ctx.lineWidth = 0;
             ctx.shadowBlur = 0;
 
-            const padding = 5;
+            const padding = BLOCK_SIZE * 0.08; 
             const drawSize = BLOCK_SIZE - 2 * padding;
             const drawX = x * BLOCK_SIZE + padding;
             const drawY = y * BLOCK_SIZE + padding;
-            const radius = 8;
+            const radius = BLOCK_SIZE * 0.13; 
             
             if (isSelected) {
-                // Apply a glow/border when selected
                 ctx.shadowColor = color;
                 ctx.shadowBlur = 10;
-                ctx.strokeStyle = 'var(--color-canvas-bg)'; // Use canvas color as a subtle border for contrast
+                ctx.strokeStyle = 'var(--color-canvas-bg)';
                 ctx.lineWidth = 4; 
             }
 
+            // Draw a rounded rectangle block
             ctx.beginPath();
             ctx.moveTo(drawX + radius, drawY);
             ctx.lineTo(drawX + drawSize - radius, drawY);
@@ -994,34 +803,32 @@
             
             ctx.fill();
             
-            if (isSelected) {
-                ctx.stroke();
-            }
+            if (isSelected) { ctx.stroke(); }
             
-            ctx.shadowBlur = 0; // Reset shadow for next draws
-            ctx.lineWidth = 1; // Reset line width
+            ctx.shadowBlur = 0;
+            ctx.lineWidth = 1;
         }
 
         function drawGrid() {
+            if (CANVAS_SIZE === 0) return; 
             ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
             
-            // Draw inner grid lines only (no edge line now that border is removed)
+            // Draw grid lines (optional, can be hidden for a cleaner look)
             ctx.strokeStyle = 'var(--color-grid-line)';
             ctx.lineWidth = 1;
             for (let i = 1; i < GRID_SIZE; i++) {
-                // Vertical lines
                 ctx.beginPath();
                 ctx.moveTo(i * BLOCK_SIZE, 0);
                 ctx.lineTo(i * BLOCK_SIZE, CANVAS_SIZE);
                 ctx.stroke();
                 
-                // Horizontal lines
                 ctx.beginPath();
                 ctx.moveTo(0, i * BLOCK_SIZE);
                 ctx.lineTo(CANVAS_SIZE, i * BLOCK_SIZE);
                 ctx.stroke();
             }
 
+            // Draw blocks
             for (let y = 0; y < GRID_SIZE; y++) {
                 for (let x = 0; x < GRID_SIZE; x++) {
                     const isCellSelected = selectedPath.some(p => p.x === x && p.y === y);
@@ -1031,7 +838,7 @@
         }
 
         function drawSelectionPath() {
-            if (selectedPath.length < 2) return;
+            if (selectedPath.length < 2 || BLOCK_SIZE === 0) return;
 
             ctx.lineWidth = 10;
             ctx.lineJoin = 'round';
@@ -1057,6 +864,13 @@
 
             ctx.stroke();
             ctx.shadowBlur = 0;
+            
+            // Draw small dot/circle on the last selected cell for highlight
+             const last = center(selectedPath[selectedPath.length - 1].x, selectedPath[selectedPath.length - 1].y);
+             ctx.fillStyle = 'white';
+             ctx.beginPath();
+             ctx.arc(last.cx, last.cy, 5, 0, Math.PI * 2);
+             ctx.fill();
         }
 
         function drawGame() {
@@ -1064,25 +878,16 @@
             drawSelectionPath();
         }
 
-        // --- INPUT HANDLING UTILITY ---
-
-        /**
-         * Calculates the mouse/touch position relative to the canvas's top-left corner.
-         */
-        function getCanvasCoordinates(e) {
-            const rect = canvas.getBoundingClientRect();
-            // Handle touch events
-            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-            
-            return {
-                x: clientX - rect.left,
-                y: clientY - rect.top
-            };
-        }
-
-
         // --- EVENT LISTENERS ---
+
+        function handleResize() {
+            // Recalculate dimensions on resize
+            calculateDimensions();
+            // Redraw only if the canvas is visible (i.e., game is running)
+            if (gameCanvas.style.display !== 'none') {
+                drawGame();
+            }
+        }
 
         function addEventListeners() {
             // Game Input Events
@@ -1093,20 +898,15 @@
             window.addEventListener('touchmove', onLinkMove);
             canvas.addEventListener('touchend', onLinkEnd);
 
-            // --- Menu Navigation Listeners ---
-            document.getElementById('mainMenuPlayBtn').addEventListener('click', () => {
-                // Start audio context on user interaction
-                if (Tone.context.state !== 'running') {
-                    Tone.start().then(() => {
-                        console.log("Audio context started.");
-                    });
-                }
-                showScreen('game');
-            });
+            // Responsive Event
+            window.addEventListener('resize', handleResize);
 
+            // Menu Navigation Listeners
+            document.getElementById('mainMenuPlayBtn').addEventListener('click', () => showScreen('game'));
             document.getElementById('mainMenuSettingsBtn').addEventListener('click', () => showScreen('settings'));
-            document.getElementById('homeBtn').addEventListener('click', () => showScreen('main')); 
+            document.getElementById('settingsBtn').addEventListener('click', () => showScreen('settings')); 
             document.getElementById('settingsBackBtn').addEventListener('click', () => showScreen('main'));
+            document.getElementById('settingsBackHomeBtn').addEventListener('click', () => showScreen('main')); // Back home button in settings
             document.getElementById('gameOverPlayAgainBtn').addEventListener('click', () => showScreen('game'));
             document.getElementById('gameOverMenuBtn').addEventListener('click', () => showScreen('main'));
             
@@ -1121,10 +921,8 @@
             document.getElementById('theme-upside-down-btn').addEventListener('click', () => applyTheme('upside-down'));
             document.getElementById('theme-ocean-btn').addEventListener('click', () => applyTheme('ocean'));
 
-            // Vibration Toggle
+            // Toggle Controls
             vibrationToggle.addEventListener('click', toggleVibration);
-            
-            // Sound Toggle (New)
             soundToggle.addEventListener('click', toggleSound);
         }
 
